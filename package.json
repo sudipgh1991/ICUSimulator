@@ -7,14 +7,9 @@
     "build": "cd ICU-Simulator && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "heroku-postbuild": "cd ICU-Simulator && ng build --prod"
+    "e2e": "ng e2e"
   },
   "private": true,
-  "engines": {
-    "node": "12.13.0",
-    "npm": "6.12.0"
-  },
   "dependencies": {
     "@angular/animations": "~10.0.4",
     "@angular/common": "~10.0.4",
