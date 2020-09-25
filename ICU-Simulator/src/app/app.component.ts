@@ -294,6 +294,7 @@ export class AppComponent implements OnInit {
       {
         name: 'Heart Rate',
         color: '#7FFF00',
+        animation: false,
         data: (function () {
           var data = [],
             time = new Date().getTime(),
@@ -437,6 +438,7 @@ export class AppComponent implements OnInit {
       {
         name: 'SpO2',
         color: '#FFFF00',
+        animation: false,
         data: (function () {
           var data = [],
             time = new Date().getTime(),
