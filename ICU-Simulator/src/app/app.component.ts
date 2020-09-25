@@ -157,13 +157,17 @@ export class AppComponent implements OnInit {
           var series = this.series[0];
           var counter = 0;
           var seriesPos = 0;
+          var interval = 1000;
+          var intervalID = 0;
+          var times = 1;
           const heartData = [
-            [10, 10, 20, 10, 85, 20, 10, 10],
-            [15, 5, 10, 20, 80, 10, 5, 20],
-            [15, 20, 10, 5, 75, 5, 10, 15],
-            [5, 10, 25, 20, 90, 20, 10, 15],
+            [10, 20, 85, 20, 10],
+            [10, 20, 85, 20, 10],
+            [10, 20, 85, 20, 10],
+            [10, 20, 85, 20, 10],
           ];
-          setInterval(function () {
+
+          var addPoint = function () {
             if (seriesPos == 4) {
               seriesPos = 0;
             }
@@ -171,11 +175,30 @@ export class AppComponent implements OnInit {
               y = heartData[seriesPos][counter];
             series.addPoint([x, y], true, true);
             counter++;
-            if (counter == 8) {
+            if ((times > 30 && times < 80) || (times > 150 && times < 200)) {
+              console.log('Hello');
+              clearInterval(intervalID);
+              interval = 550;
+              runInterval();
+            } else {
+              clearInterval(intervalID);
+              interval = 1000;
+              runInterval();
+            }
+
+            if (counter == 5) {
               counter = 0;
               seriesPos++;
             }
-          }, 550);
+          };
+          var runInterval = function () {
+            intervalID = setInterval(function () {
+              addPoint();
+              times++;
+            }, interval);
+          };
+
+          runInterval();
         },
       },
     },
@@ -316,7 +339,7 @@ export class AppComponent implements OnInit {
               counter = 0;
               seriesPos++;
             }
-          }, 550);
+          }, 600);
         },
       },
     },
