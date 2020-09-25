@@ -9,7 +9,12 @@ declare var $: any;
 export class AppComponent implements OnInit {
   title = 'ICU-Simulator';
   highcharts = Highcharts;
-  heartData = [10, 10, 20, 10, 85, 20, 10, 10];
+  heartData = [
+    [10, 10, 20, 10, 85, 20, 10, 10],
+    [15, 5, 10, 20, 80, 10, 5, 20],
+    [15, 20, 10, 5, 75, 5, 10, 15],
+    [5, 10, 25, 20, 90, 20, 10, 15],
+  ];
   hearRateValue = 85;
   chartOptions = {
     chart: {
@@ -144,13 +149,24 @@ export class AppComponent implements OnInit {
         load: function () {
           var series = this.series[0];
           var counter = 0;
+          var seriesPos = 0;
+          const heartData = [
+            [10, 10, 20, 10, 85, 20, 10, 10],
+            [15, 5, 10, 20, 80, 10, 5, 20],
+            [15, 20, 10, 5, 75, 5, 10, 15],
+            [5, 10, 25, 20, 90, 20, 10, 15],
+          ];
           setInterval(function () {
+            if (seriesPos == 4) {
+              seriesPos = 0;
+            }
             var x = new Date().getTime(),
-              y = [10, 20, 10, 85, 20, 10, 10][counter];
+              y = heartData[seriesPos][counter];
             series.addPoint([x, y], true, true);
             counter++;
-            if (counter == 7) {
+            if (counter == 8) {
               counter = 0;
+              seriesPos++;
             }
           }, 550);
         },
@@ -255,7 +271,7 @@ export class AppComponent implements OnInit {
           for (i = -70; i <= 0; i += 1) {
             data.push({
               x: time + i * 550,
-              y: [10, 20, 10, 85, 20, 10, 10],
+              y: [10],
             });
           }
           return data;
