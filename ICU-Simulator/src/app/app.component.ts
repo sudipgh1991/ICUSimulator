@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
           var series = this.series[0];
           var counter = 0;
           var seriesPos = 0;
-          var interval = 175;
+          var interval = 120;
           var intervalID = 0;
           var times = 1;
           const heartData = [
@@ -52,14 +52,13 @@ export class AppComponent implements OnInit {
               y = heartData[seriesPos][counter];
             series.addPoint([x, y], true, true);
             counter++;
-            if ((times > 30 && times < 80) || (times > 150 && times < 200)) {
-              console.log('Hello');
+            if ((times > 30 && times < 300) || (times > 600 && times < 800)) {
               clearInterval(intervalID);
-              interval = 75;
+              interval = 50;
               runInterval();
             } else {
               clearInterval(intervalID);
-              interval = 175;
+              interval = 120;
               runInterval();
             }
 
@@ -122,6 +121,7 @@ export class AppComponent implements OnInit {
           color: '#A0A0A3',
         },
       },
+      visible: false,
     },
 
     yAxis: {
@@ -148,6 +148,7 @@ export class AppComponent implements OnInit {
       minorGridLineColor: '#505053',
       tickColor: '#707073',
       tickWidth: 1,
+      visible: false,
     },
 
     tooltip: {
