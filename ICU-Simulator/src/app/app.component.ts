@@ -172,6 +172,9 @@ export class AppComponent implements OnInit {
       {
         name: 'Heart Rate',
         color: '#7FFF00',
+        marker: {
+          enabled: false,
+        },
         animation: false,
         data: (function () {
           var data = [],
@@ -314,6 +317,9 @@ export class AppComponent implements OnInit {
 
     series: [
       {
+        marker: {
+          enabled: false,
+        },
         name: 'SpO2',
         color: '#FFFF00',
         animation: false,
