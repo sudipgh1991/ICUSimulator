@@ -198,6 +198,7 @@ export class AppComponent implements OnInit {
       type: 'spline',
       marginRight: 10,
       backgroundColor: 'rgb(51,51,52)',
+      animation: false,
       events: {
         load: function () {
           var series = this.series[0];
@@ -221,7 +222,7 @@ export class AppComponent implements OnInit {
               counter = 0;
               seriesPos++;
             }
-          }, 600);
+          }, 400);
         },
       },
     },
@@ -330,7 +331,7 @@ export class AppComponent implements OnInit {
 
           for (i = -70; i <= 0; i += 1) {
             data.push({
-              x: time + i * 550,
+              x: time + i * 400,
               y: [0],
             });
           }
