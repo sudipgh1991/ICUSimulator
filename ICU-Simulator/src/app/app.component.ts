@@ -9,12 +9,6 @@ declare var $: any;
 export class AppComponent implements OnInit {
   title = 'ICU-Simulator';
   highcharts = Highcharts;
-  heartData = [
-    [10, 10, 20, 10, 85, 20, 10, 10],
-    [15, 5, 10, 20, 80, 10, 5, 20],
-    [15, 20, 10, 5, 75, 5, 10, 15],
-    [5, 10, 25, 20, 90, 20, 10, 15],
-  ];
   hearRateValue = 85;
   SpO2 = 95;
   systolic = 120;
@@ -34,7 +28,7 @@ export class AppComponent implements OnInit {
           var series = this.series[0];
           var counter = 0;
           var seriesPos = 0;
-          var interval = 120;
+          var interval = 300;
           var intervalID = 0;
           var times = 1;
           const heartData = [
@@ -44,24 +38,28 @@ export class AppComponent implements OnInit {
             [0, 10, 20, 10, 10, 15, 0, 85],
           ];
 
+          const speedheartData = [
+            [0, 10, 20, 85, 10, 15, 0, 85],
+            [0, 10, 20, 85, 10, 15, 0, 85],
+            [0, 10, 20, 85, 10, 15, 0, 85],
+            [0, 10, 20, 85, 10, 15, 0, 85],
+          ];
+
           var addPoint = function () {
             if (seriesPos == 4) {
               seriesPos = 0;
             }
-            var x = new Date().getTime(),
-              y = heartData[seriesPos][counter];
-            series.addPoint([x, y], true, true);
-            counter++;
-            if ((times > 30 && times < 300) || (times > 600 && times < 800)) {
-              clearInterval(intervalID);
-              interval = 50;
-              runInterval();
-            } else {
-              clearInterval(intervalID);
-              interval = 120;
-              runInterval();
-            }
 
+            if ((times > 100 && times < 350) || (times > 600 && times < 800)) {
+              var x = new Date().getTime(),
+                y = speedheartData[seriesPos][counter];
+              series.addPoint([x, y], true, true);
+            } else {
+              var x = new Date().getTime(),
+                y = heartData[seriesPos][counter];
+              series.addPoint([x, y], true, true);
+            }
+            counter++;
             if (counter == 8) {
               counter = 0;
               seriesPos++;
