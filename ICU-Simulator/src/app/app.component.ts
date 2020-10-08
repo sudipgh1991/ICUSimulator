@@ -28,8 +28,7 @@ export class AppComponent implements OnInit {
           var series = this.series[0];
           var counter = 0;
           var seriesPos = 0;
-          var interval = 300;
-          var intervalID = 0;
+          var interval = 200;
           var times = 1;
           const heartData = [
             [0, 10, 20, 10, 10, 15, 0, 85],
@@ -44,12 +43,10 @@ export class AppComponent implements OnInit {
             [0, 10, 20, 85, 10, 15, 0, 85],
             [0, 10, 20, 85, 10, 15, 0, 85],
           ];
-
-          var addPoint = function () {
+          setInterval(function () {
             if (seriesPos == 4) {
               seriesPos = 0;
             }
-
             if ((times > 100 && times < 350) || (times > 600 && times < 800)) {
               var x = new Date().getTime(),
                 y = speedheartData[seriesPos][counter];
@@ -64,15 +61,8 @@ export class AppComponent implements OnInit {
               counter = 0;
               seriesPos++;
             }
-          };
-          var runInterval = function () {
-            intervalID = setInterval(function () {
-              addPoint();
-              times++;
-            }, interval);
-          };
-
-          runInterval();
+            times++;
+          }, interval);
         },
       },
     },
@@ -220,7 +210,7 @@ export class AppComponent implements OnInit {
               counter = 0;
               seriesPos++;
             }
-          }, 400);
+          }, 200);
         },
       },
     },
