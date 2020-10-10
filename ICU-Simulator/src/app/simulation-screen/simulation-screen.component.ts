@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 declare var $: any;
@@ -10,8 +11,10 @@ declare var $: any;
 export class SimulationScreenComponent implements OnInit {
   title = 'ICU-Simulator';
   highcharts = Highcharts;
-  hearRateValue = 85;
+  heartRateValue = 85;
+  newHeartRateValue = 85;
   SpO2 = 98;
+  newSpO2 = 98;
   systolic = 120;
   diastolic = 80;
   pulse = 78;
@@ -333,8 +336,12 @@ export class SimulationScreenComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       $('.highcharts-credits').hide();
+      $('#exampleModal')
+        .modal({
+          backdrop: false,
+        })
+        .toggle();
     }, 20);
-
     setInterval(() => {
       // this.hearRateValue = Math.floor(Math.random() * (85 - 75 + 1) + 75);
       // this.SpO2 = Math.floor(Math.random() * (91 - 99 + 1) + 91);
@@ -344,5 +351,22 @@ export class SimulationScreenComponent implements OnInit {
       this.awRR = Math.floor(Math.random() * (12 - 14 + 1) + 12);
       this.Tblood = Math.floor(Math.random() * (95 - 100 + 1) + 99);
     }, 5000);
+  }
+
+  changeFrequency() {
+    var frequency =
+      this.newHeartRateValue != this.heartRateValue
+        ? this.heartFrequency + this.newHeartRateValue - this.heartRateValue
+        : this.heartFrequency + this.newSpO2 - this.SpO2;
+
+    this.highcharts.charts[0].series[0].setData(
+      [].concat(...new Array(frequency).fill(this.heartRateData))
+    );
+    this.highcharts.charts[1].series[0].setData(
+      [].concat(...new Array(frequency).fill(this.spO2Data))
+    );
+    this.heartRateValue = this.newHeartRateValue;
+    this.SpO2 = this.newSpO2;
+    $('#exampleModal').modal('hide');
   }
 }
