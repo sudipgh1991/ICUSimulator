@@ -177,43 +177,44 @@
 
 
 
-  <!-- Modal -->
-<div class="modal hide fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Change Parameters</h2>
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button> -->
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Heart Rate</h4>
-          </div>
-          <div class="col-sm-6">
-            <input type="number" style="width: 100%;font-size: 1.2rem;" name="heartRate" id="heartRate" [(ngModel)]="newHeartRateValue" [value]="heartRateValue">
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>SPo2</h4>
-          </div>
-          <div class="col-sm-6">
-            <input type="number" style="width: 100%;font-size: 1.2rem;" name="SPo2" id="SPo2" [(ngModel)]="newSpO2" [value]="SpO2">
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="changeFrequency()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 </div>
 <br />
 <div class="scroller" style="position: absolute"></div>
+  <!-- Modal -->
+  <div class="modal hide fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel">Change Parameters</h2>
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>Heart Rate</h4>
+            </div>
+            <div class="col-sm-6">
+              <input type="number" style="width: 100%;font-size: 1.2rem;" name="heartRate" id="heartRate" [(ngModel)]="newHeartRateValue" [value]="heartRateValue">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4>SPo2</h4>
+            </div>
+            <div class="col-sm-6">
+              <input type="number" style="width: 100%;font-size: 1.2rem;" name="SPo2" id="SPo2" [(ngModel)]="newSpO2" [value]="SpO2">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="changeFrequency()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
