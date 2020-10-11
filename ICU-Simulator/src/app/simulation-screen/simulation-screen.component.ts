@@ -10,7 +10,7 @@ declare var $: any;
 })
 export class SimulationScreenComponent implements OnInit {
   title = 'ICU-Simulator';
-  highcharts = Highcharts;
+  highcharts = null;
   heartRateValue = 85;
   newHeartRateValue = 85;
   SpO2 = 98;
@@ -334,6 +334,7 @@ export class SimulationScreenComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.highcharts = Highcharts;
     setTimeout(() => {
       $('.highcharts-credits').hide();
       $('#exampleModal')
@@ -359,12 +360,16 @@ export class SimulationScreenComponent implements OnInit {
         ? this.heartFrequency + this.newHeartRateValue - this.heartRateValue
         : this.heartFrequency + this.newSpO2 - this.SpO2;
 
-    this.highcharts.charts[0].series[0].setData(
-      [].concat(...new Array(frequency).fill(this.heartRateData))
-    );
-    this.highcharts.charts[1].series[0].setData(
-      [].concat(...new Array(frequency).fill(this.spO2Data))
-    );
+    this.highcharts.charts
+      .filter((m) => m)[0]
+      .series[0].setData(
+        [].concat(...new Array(frequency).fill(this.heartRateData))
+      );
+    this.highcharts.charts
+      .filter((m) => m)[1]
+      .series[0].setData(
+        [].concat(...new Array(frequency).fill(this.spO2Data))
+      );
     this.heartRateValue = this.newHeartRateValue;
     this.SpO2 = this.newSpO2;
     $('#exampleModal').modal('hide');
