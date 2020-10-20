@@ -357,8 +357,8 @@ export class SimulationScreenComponent implements OnInit {
   changeFrequency() {
     var frequency =
       this.newHeartRateValue != this.heartRateValue
-        ? this.heartFrequency + this.newHeartRateValue - this.heartRateValue
-        : this.heartFrequency + this.newSpO2 - this.SpO2;
+        ? this.heartFrequency + this.newHeartRateValue - 85
+        : this.heartFrequency + this.newSpO2 - 98;
 
     this.highcharts.charts
       .filter((m) => m)[0]
