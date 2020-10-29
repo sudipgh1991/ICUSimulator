@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+var beep = require('beepbeep')
 
 const app = express();
 
@@ -7,6 +8,9 @@ const app = express();
 app.use(express.static(__dirname + '/ICU-Simulator/dist/ICU-Simulator'));
 
 app.get('/*', function (req, res) {
+  setInterval(()=>{
+    beep()
+  },4000)
   res.sendFile(
     path.join(__dirname + '/ICU-Simulator/dist/ICU-Simulator/index.html')
   );
