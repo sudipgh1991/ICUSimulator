@@ -370,6 +370,9 @@ export class SimulationScreenComponent implements OnInit {
       .series[0].setData(
         [].concat(...new Array(frequency).fill(this.spO2Data))
       );
+    this.highcharts.charts
+      .filter((m) => m)[2]
+      .series[0].setData([].concat(...new Array(frequency).fill(this.BPData)));
     this.heartRateValue = this.newHeartRateValue;
     this.SpO2 = this.newSpO2;
     $('#exampleModal').modal('hide');
