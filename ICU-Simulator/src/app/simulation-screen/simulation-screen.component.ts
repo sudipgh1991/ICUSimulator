@@ -15,8 +15,8 @@ export class SimulationScreenComponent implements OnInit {
   newHeartRateValue = 85;
   SpO2 = 98;
   newSpO2 = 98;
-  systolic = 120;
-  diastolic = 80;
+  systolic = 150;
+  diastolic = 90;
   pulse = 78;
   awRR = 12;
   Tblood = 99;
@@ -346,8 +346,8 @@ export class SimulationScreenComponent implements OnInit {
     setInterval(() => {
       // this.hearRateValue = Math.floor(Math.random() * (85 - 75 + 1) + 75);
       // this.SpO2 = Math.floor(Math.random() * (91 - 99 + 1) + 91);
-      this.systolic = Math.floor(Math.random() * (120 - 140 + 1) + 120);
-      this.diastolic = Math.floor(Math.random() * (80 - 90 + 1) + 80);
+      // this.systolic = Math.floor(Math.random() * (120 - 140 + 1) + 120);
+      // this.diastolic = Math.floor(Math.random() * (80 - 90 + 1) + 80);
       this.pulse = Math.floor(Math.random() * (85 - 75 + 1) + 75);
       this.awRR = Math.floor(Math.random() * (12 - 14 + 1) + 12);
       this.Tblood = Math.floor(Math.random() * (95 - 100 + 1) + 99);
