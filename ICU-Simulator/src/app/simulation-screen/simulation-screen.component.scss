@@ -58,6 +58,33 @@ div.scroller {
     left: 88%;
   }
 }
+@media screen and (min-width: 320px) {
+  div.scroller {
+    height: 140%;
+  }
+}
+
+@media screen and (min-width: 360px) {
+  div.scroller {
+    height: 125%;
+  }
+}
+@media screen and (min-width: 375px) {
+  div.scroller {
+    height: 97%;
+  }
+}
+
+@media screen and (min-width: 411px) {
+  div.scroller {
+    height: 110%;
+  }
+}
+@media screen and (min-width: 768px) {
+  div.scroller {
+    height: 78%;
+  }
+}
 
 .modal-header {
   border: 0px;
