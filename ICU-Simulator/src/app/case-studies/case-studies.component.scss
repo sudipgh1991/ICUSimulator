@@ -1,9 +1,20 @@
 .card {
   width: 100%;
   align-items: center;
+  background-color: #19191a;
+  box-shadow: 5px 10px #1a1d27;
+}
+
+.card-title {
+  color: white;
+}
+
+.card-text {
+  color: wheat;
 }
 
 img {
-  height: 200px;
+  height: 156px;
   width: 200px;
+  margin-top: 3%;
 }
