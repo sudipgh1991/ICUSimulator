@@ -5,6 +5,10 @@
   box-shadow: 5px 10px #1a1d27;
 }
 
+.card:hover {
+  transform: scale(1.01);
+}
+
 .card-title {
   color: white;
 }
