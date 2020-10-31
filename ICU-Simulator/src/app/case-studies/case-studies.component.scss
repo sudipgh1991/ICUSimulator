@@ -9,6 +9,15 @@
   transform: scale(1.01);
 }
 
+@media screen and (max-width: 990px) {
+  .row {
+    margin: 5% 0;
+  }
+  .card {
+    margin: 2% 0;
+  }
+}
+
 .card-title {
   color: white;
 }
