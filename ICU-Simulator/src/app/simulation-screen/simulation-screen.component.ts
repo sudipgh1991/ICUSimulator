@@ -16,7 +16,9 @@ export class SimulationScreenComponent implements OnInit {
   SpO2 = 98;
   newSpO2 = 98;
   systolic = 150;
+  newSystolic = 150;
   diastolic = 90;
+  newDiastolic = 90;
   pulse = 78;
   awRR = 12;
   Tblood = 99;
@@ -32,7 +34,7 @@ export class SimulationScreenComponent implements OnInit {
       marginRight: 10,
       backgroundColor: 'rgb(51,51,52)',
     },
-
+    tooltip: { enabled: false },
     time: {
       useUTC: false,
     },
@@ -105,15 +107,6 @@ export class SimulationScreenComponent implements OnInit {
       visible: false,
     },
 
-    tooltip: {
-      headerFormat: '<b>{series.name}</b><br/>',
-      pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}',
-      backgroundColor: 'rgba(0, 0, 0, 0.85)',
-      style: {
-        color: '#F0F0F0',
-      },
-    },
-
     legend: {
       enabled: false,
     },
@@ -144,7 +137,7 @@ export class SimulationScreenComponent implements OnInit {
       backgroundColor: 'rgb(51,51,52)',
       animation: false,
     },
-
+    tooltip: { enabled: false },
     time: {
       useUTC: false,
     },
@@ -202,16 +195,6 @@ export class SimulationScreenComponent implements OnInit {
       min: 0,
       max: 100,
     },
-
-    tooltip: {
-      headerFormat: '<b>{series.name}</b><br/>',
-      pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}',
-      backgroundColor: 'rgba(0, 0, 0, 0.85)',
-      style: {
-        color: '#F0F0F0',
-      },
-    },
-
     legend: {
       enabled: false,
     },
@@ -242,7 +225,7 @@ export class SimulationScreenComponent implements OnInit {
       backgroundColor: 'rgb(51,51,52)',
       animation: false,
     },
-
+    tooltip: { enabled: false },
     time: {
       useUTC: false,
     },
@@ -300,24 +283,12 @@ export class SimulationScreenComponent implements OnInit {
       min: 0,
       max: 100,
     },
-
-    tooltip: {
-      headerFormat: '<b>{series.name}</b><br/>',
-      pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}',
-      backgroundColor: 'rgba(0, 0, 0, 0.85)',
-      style: {
-        color: '#F0F0F0',
-      },
-    },
-
     legend: {
       enabled: false,
     },
-
     exporting: {
       enabled: false,
     },
-
     series: [
       {
         marker: {
@@ -355,26 +326,39 @@ export class SimulationScreenComponent implements OnInit {
   }
 
   changeFrequency() {
-    var frequency =
-      this.newHeartRateValue != this.heartRateValue
-        ? this.heartFrequency + this.newHeartRateValue - 85
-        : this.heartFrequency + this.newSpO2 - 98;
-
-    this.highcharts.charts
-      .filter((m) => m)[0]
-      .series[0].setData(
-        [].concat(...new Array(frequency).fill(this.heartRateData))
-      );
-    this.highcharts.charts
-      .filter((m) => m)[1]
-      .series[0].setData(
-        [].concat(...new Array(frequency).fill(this.spO2Data))
-      );
-    this.highcharts.charts
-      .filter((m) => m)[2]
-      .series[0].setData([].concat(...new Array(frequency).fill(this.BPData)));
+    if (this.newHeartRateValue != this.heartRateValue) {
+      this.highcharts.charts
+        .filter((m) => m)[0]
+        .series[0].setData(
+          [].concat(
+            ...new Array(
+              this.heartFrequency + this.newHeartRateValue - 85
+            ).fill(this.heartRateData)
+          )
+        );
+      this.highcharts.charts
+        .filter((m) => m)[1]
+        .series[0].setData(
+          [].concat(
+            ...new Array(
+              this.heartFrequency + this.newHeartRateValue - 85
+            ).fill(this.spO2Data)
+          )
+        );
+      this.highcharts.charts
+        .filter((m) => m)[2]
+        .series[0].setData(
+          [].concat(
+            ...new Array(
+              this.heartFrequency + this.newHeartRateValue - 85
+            ).fill(this.BPData)
+          )
+        );
+    }
     this.heartRateValue = this.newHeartRateValue;
     this.SpO2 = this.newSpO2;
+    this.systolic = this.newSystolic;
+    this.diastolic = this.newDiastolic;
     $('#exampleModal').modal('hide');
   }
 }
