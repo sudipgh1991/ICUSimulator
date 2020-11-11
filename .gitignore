@@ -1,3 +1,5 @@
 ICU-Simulator/node_modules/
 node_modules/
 ICU-Simulator/dist/
+ICU-Simulator-Backend/Migrations/
+ICU-Simulator-Backend/.vscode/
