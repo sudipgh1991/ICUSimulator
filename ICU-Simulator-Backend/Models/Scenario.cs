@@ -14,7 +14,7 @@ namespace Simulation.Models
         public string SymptomId { get; set; }
         [Required]
         public string MeasureId { get; set; }
-        [Required]
-        public string Description { get; set; }
+        public string BriefDescription { get; set; }
+        public string DetailedDescription { get; set; }
     }
 }

@@ -28,6 +28,10 @@ namespace ICU_Simulator_Backend
             });
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IScenarioRepo, ScenarioRepo>();
+            services.AddScoped<IConditionRepo, ConditionRepo>();
+            services.AddScoped<ISymptomRepo, SymptomRepo>();
+            services.AddScoped<IInputRepo, InputRepo>();
+            services.AddScoped<IParameterRepo, ParameterRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
