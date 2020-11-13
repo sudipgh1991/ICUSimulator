@@ -7,6 +7,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { SimulationScreenComponent } from './simulation-screen/simulation-screen.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, SimulationScreenComponent, CaseStudiesComponent],
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     AppRoutingModule,
     HighchartsChartModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

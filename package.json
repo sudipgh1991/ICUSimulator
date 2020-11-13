@@ -28,6 +28,7 @@
     "highcharts-angular": "^2.8.0",
     "jquery": "^3.5.1",
     "rxjs": "~6.5.5",
+    "shelljs": "^0.8.4",
     "tslib": "^2.0.0",
     "typescript": "~3.9.5",
     "zone.js": "~0.10.3"

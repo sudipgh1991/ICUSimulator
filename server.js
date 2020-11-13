@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const shell = require('shelljs');
+
 var beep = require('beepbeep')
 
 const app = express();
@@ -11,6 +13,7 @@ app.get('/*', function (req, res) {
   setInterval(()=>{
     beep()
   },4000)
+  shell.exec(__dirname+'/launch.sh')
   res.sendFile(
     path.join(__dirname + '/ICU-Simulator/dist/ICU-Simulator/index.html')
   );
