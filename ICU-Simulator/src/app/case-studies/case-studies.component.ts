@@ -12,7 +12,6 @@ export class CaseStudiesComponent implements OnInit {
   ngOnInit(): void {
     this.caseStudy.getScenarios().subscribe((data) => {
       this.caseStudies = data;
-      debugger;
     });
   }
 }
