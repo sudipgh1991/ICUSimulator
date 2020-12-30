@@ -25,7 +25,7 @@ export class CaseStudiesComponent implements OnInit {
     this.caseStudies = [
       {
         type: 'heart',
-        briefDescription: 'Case Study 1111',
+        briefDescription: 'Case Study 1',
         detailedDescription:
           'A 65 year old gentleman, H/O HTN and DM presented with SOB. On examination, anxious, having respiratory distress and cold peripheries',
       },
