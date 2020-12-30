@@ -1,0 +1,249 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" [routerLink]="['./caseStudies']" routerLinkActive="router-link-active" style="font-size: 2rem;">Patient Profile</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <a class="nav-link btn btn-outline-success" href="#" style="font-size: 1.2rem;" [routerLink]="['/caseStudies']">Back to Case Studies <span class="sr-only">(current)</span></a>
+        </form>
+    </div>
+</nav>
+
+<div class="container-fluid" style="padding:2em;margin-top:4em">
+    <div class="row">
+        <div class="col-lg-3 col-md-12">
+            <div class="card" style="height: 190px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 d-flex justify-content-around">
+                            <div class="patient-img-name text-center">
+                                <img src="../../assets/images/patientImg.png" alt="" class="card-img-top mb-1 patient-img img-fluid rounded-circle" style="zoom:0.5">
+                                <h4>Sarah Lance</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9 d-flex justify-content-around">
+                            <div class="patient-info">
+                                <table class='table borderless' style="font-size: 20px; color:black">
+                                    <tbody>
+                                        <tr>
+                                            <td>Birth:</td>
+                                            <td>20th Jan, 1992</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email:</td>
+                                            <td>sarahlance@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Contact:</td>
+                                            <td>5544332211</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address:</td>
+                                            <td>55th street, Queen City</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12">
+            <div class="card bg-gradient-y-info" style="height: 190px;">
+                <div class="card-body">
+                    <table class='table borderless' style="font-size: 20px; color:white">
+                        <tbody>
+                            <tr>
+                                <td>Blood Type:</td>
+                                <td>AB+</td>
+                            </tr>
+                            <tr>
+                                <td>Allergies:</td>
+                                <td>Milk, Pineapple, Sea foods</td>
+                            </tr>
+                            <tr>
+                                <td>Disease:</td>
+                                <td>Diabetes, High BP, Cholestrol</td>
+                            </tr>
+                            <tr>
+                                <td>Last Visit:</td>
+                                <td>10th Oct, 2018</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12">
+            <div class="card bg-gradient-y-warning" style="height: 190px;">
+                <div class="card-title" style="text-align: center;font-size:x-large;color: white;">Symptoms</div>
+                <div class="card-body" style="padding-top: 0px;">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <ul style="color: white; font-size: 18px;font-weight:600">
+                                <li>Chest Discomfort</li>
+                                <li>Respiratory Distress</li>
+                                <li>SOB</li>
+                                <li>Cold Peripheries</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <ul style="color: white; font-size: 18px;font-weight:600">
+                                <li>Heart Problem</li>
+                                <li>Headache</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12">
+            <div class="card bg-gradient-y-success" style="height: 190px;">
+                <div class="card-title" style="text-align: center;font-size:x-large;color: white;">Regular Checkups</div>
+                <div class="card-body" style="padding-top: 0px;">
+                    <table class='table borderless' style="font-size: 18px; color:white">
+                        <tbody>
+                            <tr>
+                                <td>Dr. Phil Gray</td>
+                                <td style="text-align: right;">Dentist</td>
+                            </tr>
+                            <tr>
+                                <td>Dr. Irene Baker</td>
+                                <td style="text-align: right;">Dermatologist</td>
+                            </tr>
+                            <tr>
+                                <td>Dr. Diane Page</td>
+                                <td style="text-align: right;">ID Physician</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Medical History</h2>
+                    <div class="table-responsive">
+                        <table class="table patient-wrapper">
+                            <tbody>
+                                <tr>
+                                    <td class=" border-top-0 align-middle">
+                                        <img src="../../assets/images/patientImg2.png" alt="" class="rounded-circle doctor-img">
+                                    </td>
+                                    <td class="align-middle border-top-0">Dr. Phil Gray</td>
+                                    <td class="align-middle border-top-0">Dentist</td>
+                                    <td class="align-middle border-top-0">
+                                        <i class="fa fa-calendar-check-o"></i> 15/10/18
+                                    </td>
+                                    <td class="align-middle border-top-0">
+                                        <i class="fa fa-map-marker"></i> 58th Street, Manhattan, NYC
+                                    </td>
+                                    <td class="align-middle border-top-0">
+                                        <i class="fa fa-circle text-danger"></i> Hospital Visit
+                                    </td>
+                                    <td class="align-middle border-top-0">
+                                        <div class="action">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>&nbsp;&nbsp;
+                                            <i class="fa fa-trash-o" aria-hidden="true" title="Delete"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <img src="../../assets/images/patientImg3.png" alt="" class="rounded-circle doctor-img">
+                                    </td>
+                                    <td class="align-middle">Dr. Irene Baker</td>
+                                    <td class="align-middle">Dermatologist</td>
+                                    <td class="align-middle">
+                                        <i class="fa fa-calendar-check-o"></i> 20/10/18
+                                    </td>
+                                    <td class="align-middle">
+                                        <i class="fa fa-map-marker"></i> 58th Street, Manhattan, NYC
+                                    </td>
+                                    <td class="align-middle">
+                                        <i class="fa fa-circle text-primary"></i> Medical Consultion
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="action">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>&nbsp;&nbsp;
+                                            <i class="fa fa-trash-o" aria-hidden="true" title="Delete"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="align-middle border-bottom-0">
+                                        <img src="../../assets/images/patientImg4.png" alt="" class="rounded-circle doctor-img">
+                                    </td>
+                                    <td class="align-middle border-bottom-0">Dr. Diane Paige</td>
+                                    <td class="align-middle border-bottom-0">ID Physician</td>
+                                    <td class="align-middle border-bottom-0">
+                                        <i class="fa fa-calendar-check-o"></i> 25/10/18
+                                    </td>
+                                    <td class="align-middle border-bottom-0">
+                                        <i class="fa fa-map-marker"></i> 58th Street, Manhattan, NYC
+                                    </td>
+                                    <td class="align-middle border-bottom-0">
+                                        <i class="fa fa-circle text-danger"></i> Hospital Visit
+                                    </td>
+                                    <td class="align-middle border-bottom-0">
+                                        <div class="action">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>&nbsp;&nbsp;
+                                            <i class="fa fa-trash-o" aria-hidden="true" title="Delete"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" style="background-image: linear-gradient(to right, rgb(19, 3, 83) , rgb(9, 55, 193));border-radius: 10px;" (click)="expandCollapse()">
+                <h2 class="mb-0" style="cursor: pointer; color:white" *ngIf="!expand && position < questions.length">Click here to play the game !!</h2>
+                <h2 class="mb-0" style="cursor: pointer; color:white" *ngIf="expand && position < questions.length">Choose the correct option</h2>
+                <h2 *ngIf="position === questions.length" style="color: white;">All the responses are saved.
+                    <button class="btn btn-success" [routerLink]="['/simulationScreen']"><span>Click here</span></button> to see the result in simulation</h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion" *ngIf="position < questions.length">
+                <div class="card-body">
+                    <div class="row">
+                        <h3 style="padding: 0 1%">{{questions[position].question}}</h3>
+                    </div>
+
+                    <div class="row">
+                        <div *ngFor="let item of questions[position].options" class="col-sm-6" style="padding:10px">
+                            <div class="card pull-up">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12 text-left" (click)="answerChoosen()">
+                                                <h5 class="mb-0">{{item}}</h5>
+                                                <small class="text-danger">120/89 mm/hg</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

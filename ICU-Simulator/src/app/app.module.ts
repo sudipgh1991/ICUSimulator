@@ -8,9 +8,10 @@ import { SimulationScreenComponent } from './simulation-screen/simulation-screen
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 
 @NgModule({
-  declarations: [AppComponent, SimulationScreenComponent, CaseStudiesComponent],
+  declarations: [AppComponent, SimulationScreenComponent, CaseStudiesComponent, PatientProfileComponent],
   imports: [
     BrowserModule,
     FormsModule,

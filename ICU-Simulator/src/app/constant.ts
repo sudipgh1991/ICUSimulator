@@ -1,3 +1,3 @@
 export class Constant {
-  public static api = 'http://localhost:5000/api/';
+  public static api = 'http://' + window.location.hostname + ':5000/api/';
 }

@@ -1,0 +1,107 @@
+.card:hover {
+    transform: scale(1.01);
+}
+
+.card {
+    border-radius: 15px;
+    // box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 18px 1px rgba(49, 53, 72, .1);
+}
+
+@media screen and (max-width: 990px) {
+    .card {
+        height: unset !important;
+        margin-bottom: 5vh;
+    }
+}
+
+.patient-info-heading {
+    font-weight: 900;
+    display: inline-block;
+    width: 100px;
+}
+
+.bg-gradient-y-info {
+    background-image: linear-gradient(to bottom, #0d0356 0, #150998 100%);
+    background-repeat: repeat-x;
+}
+
+.bg-gradient-y-warning {
+    background-image: linear-gradient(to bottom, #803401 0, #d65b09 100%);
+    background-repeat: repeat-x;
+}
+
+.bg-gradient-y-success {
+    background-image: linear-gradient(to bottom, #022f0c 0, #048923 100%);
+    background-repeat: repeat-x;
+}
+
+.borderless td,
+.borderless th {
+    border: none;
+}
+
+table tbody tr td:first-child {
+    font-weight: 700;
+    width: 150px;
+}
+
+.table td {
+    padding: 0.15rem;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.patient-wrapper.table td {
+    padding: .75rem .8rem;
+}
+
+.doctor-img {
+    zoom: 0.3;
+}
+
+.patient-wrapper {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #6b6f82;
+    font-size: larger;
+}
+
+.fa {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.fa-pencil-square-o {
+    color: #28d094 !important;
+}
+
+.fa-trash-o {
+    color: #ff9149 !important;
+}
+
+@media screen and (max-width: 990px) {
+    .doctor-img {
+        zoom: 0.2;
+    }
+    .patient-wrapper {
+        font-size: small;
+    }
+}
+
+.pull-up {
+    transition: all .25s ease;
+}
+
+.pull-up:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 14px 24px rgba(62, 57, 107, .2);
+    z-index: 30;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+}
