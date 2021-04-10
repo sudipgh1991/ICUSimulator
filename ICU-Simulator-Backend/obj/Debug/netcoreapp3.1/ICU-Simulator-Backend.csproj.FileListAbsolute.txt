@@ -1,6 +1,5 @@
 D:\ICUSimulator\ICU-Simulator-Backend\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\ICUSimulator\ICU-Simulator-Backend\bin\Debug\netcoreapp3.1\appsettings.json
-D:\ICUSimulator\ICU-Simulator-Backend\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 D:\ICUSimulator\ICU-Simulator-Backend\bin\Debug\netcoreapp3.1\ICU-Simulator-Backend.exe
 D:\ICUSimulator\ICU-Simulator-Backend\bin\Debug\netcoreapp3.1\ICU-Simulator-Backend.deps.json
 D:\ICUSimulator\ICU-Simulator-Backend\bin\Debug\netcoreapp3.1\ICU-Simulator-Backend.runtimeconfig.json
@@ -66,3 +65,4 @@ D:\ICUSimulator\ICU-Simulator-Backend\obj\Debug\netcoreapp3.1\staticwebassets\IC
 D:\ICUSimulator\ICU-Simulator-Backend\obj\Debug\netcoreapp3.1\ICU-Simulator-Backend.dll
 D:\ICUSimulator\ICU-Simulator-Backend\obj\Debug\netcoreapp3.1\ICU-Simulator-Backend.pdb
 D:\ICUSimulator\ICU-Simulator-Backend\obj\Debug\netcoreapp3.1\ICU-Simulator-Backend.genruntimeconfig.cache
+D:\ICUSimulator\ICU-Simulator-Backend\obj\Debug\netcoreapp3.1\scopedcss\bundle\ICU-Simulator-Backend.styles.css

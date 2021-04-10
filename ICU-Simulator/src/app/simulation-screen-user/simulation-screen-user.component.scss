@@ -1,0 +1,100 @@
+.values h1 {
+  font-size: 5rem;
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+}
+
+h5 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .values h1 {
+    margin-top: 0px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .values {
+    margin-top: 2%;
+  }
+}
+
+.display {
+  padding: 0px 0px !important;
+}
+
+button.btn-param {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 0px;
+}
+
+.col-sm-1 {
+  padding: 0px;
+}
+
+div.scroller {
+  width: 85px;
+  height: 80%;
+  background-color: rgba(51, 51, 51, 1);
+  animation-name: example;
+  animation-duration: 4s;
+  top: 3%;
+  left: 1%;
+  animation-delay: 0;
+  animation-iteration-count: infinite;
+  animation-direction: forward;
+  animation-timing-function: linear;
+}
+
+@keyframes example {
+  0% {
+    left: 1%;
+  }
+  100% {
+    left: 88%;
+  }
+}
+@media screen and (min-width: 320px) {
+  div.scroller {
+    height: 140%;
+  }
+}
+
+@media screen and (min-width: 360px) {
+  div.scroller {
+    height: 125%;
+  }
+}
+@media screen and (min-width: 375px) {
+  div.scroller {
+    height: 97%;
+  }
+}
+
+@media screen and (min-width: 411px) {
+  div.scroller {
+    height: 110%;
+  }
+}
+@media screen and (min-width: 768px) {
+  div.scroller {
+    height: 86%;
+  }
+}
+
+.modal-header {
+  border: 0px;
+  display: block;
+  text-align: center;
+  background: black;
+  color: wheat;
+  margin-bottom: 5%;
+}
+
+.modal-footer {
+  margin-top: 5%;
+}
