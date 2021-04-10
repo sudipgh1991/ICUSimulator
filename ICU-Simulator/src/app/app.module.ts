@@ -12,7 +12,6 @@ import { SimulationScreenComponentUser } from './simulation-screen-user/simulati
 import { SigninComponent } from './signin/signin.component';
 import { MaterialModule } from './angular-material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
-    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
