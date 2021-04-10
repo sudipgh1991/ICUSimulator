@@ -4,7 +4,7 @@ import { CaseStudiesComponent } from './case-studies/case-studies.component';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 import { SimulationScreenComponentAdmin } from './simulation-screen-admin/simulation-screen-admin.component';
 import { SimulationScreenComponentUser } from './simulation-screen-user/simulation-screen-user.component';
-import {SigninComponent} from './signin/signin.component';
+import { SigninComponent } from './signin/signin.component';
 
 const routes: Routes = [
   { path: 'simulationScreenAdmin', component: SimulationScreenComponentAdmin },
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'signIn', component: SigninComponent },
   { path: 'patientProfile', component: PatientProfileComponent },
   { path: 'patientProfile/:id', component: PatientProfileComponent },
-  { path: '', redirectTo: '/simulationScreenAdmin', pathMatch: 'full' },
+  { path: '', redirectTo: '/signIn', pathMatch: 'full' },
 ];
 
 @NgModule({

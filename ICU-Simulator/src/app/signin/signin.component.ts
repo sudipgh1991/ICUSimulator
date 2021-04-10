@@ -1,25 +1,29 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
   username: string;
   password: string;
+  unauthorized = false;
 
   ngOnInit(): void {}
 
   login(): void {
-    if (this.username === 'admin' && this.password === 'admin'){
+    if (this.username === 'admin' && this.password === 'admin') {
+      this.unauthorized = false;
       this.router.navigate(['simulationScreenAdmin']);
-    } else if (this.username === 'user' && this.password === 'user'){
-      this.router.navigate(['simulationScreenUser']);
     } else {
-      alert('Invalid credentials');
+      this.unauthorized = true;
     }
+  }
+
+  loginAsUser(): void {
+    this.router.navigate(['simulationScreenUser']);
   }
 }

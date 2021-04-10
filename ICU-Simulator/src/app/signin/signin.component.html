@@ -1,26 +1,43 @@
-  <mat-card class="example-card">
+<mat-card class="example-card">
     <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
+        <mat-card-title>Admin Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form class="example-form">
-        <table class="example-full-width" cellspacing="0">
-          <tr>
-            <td>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td><mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
-            </mat-form-field></td>
-          </tr></table>
-      </form>
+        <form class="example-form">
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr *ngIf="unauthorized">
+                    <td>
+                        <mat-label style="color: red">* Invalid username or password for admin login</mat-label>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button (click)="login()" color="primary">Login</button>
+        <div class="row">
+            <div class="col-sm-12">
+                <button mat-raised-button (click)="login()" style="background-color: seagreen; color:white">Login as admin</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12">
+                <button mat-raised-button (click)="loginAsUser()" color="primary">Login as user</button>
+            </div>
+        </div>
     </mat-card-actions>
-  </mat-card>
-
+</mat-card>
