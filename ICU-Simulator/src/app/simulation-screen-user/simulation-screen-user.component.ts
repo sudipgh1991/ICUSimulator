@@ -11,9 +11,13 @@ export class SimulationScreenComponentUser implements OnInit {
   title = 'ICU-Simulator';
   highcharts = null;
   heartRateValue = 85;
+  newHeartRateValue = 85;
   SpO2 = 98;
+  newSpO2 = 98;
   systolic = 150;
+  newSystolic = 150;
   diastolic = 90;
+  newDiastolic = 90;
   pulse = 78;
   awRR = 12;
   Tblood = 99;
@@ -315,18 +319,58 @@ export class SimulationScreenComponentUser implements OnInit {
       this.Tblood = Math.floor(Math.random() * (95 - 100 + 1) + 99);
     }, 5000);
     setInterval(() => {
-      this.heartRateValue = isNaN(parseInt(localStorage.getItem('heartRate')))
+      this.newHeartRateValue = isNaN(
+        parseInt(localStorage.getItem('heartRate'))
+      )
         ? this.heartRateValue
         : parseInt(localStorage.getItem('heartRate'));
-      this.SpO2 = isNaN(parseInt(localStorage.getItem('spO2')))
+      this.newSpO2 = isNaN(parseInt(localStorage.getItem('spO2')))
         ? this.SpO2
         : parseInt(localStorage.getItem('spO2'));
-      this.systolic = isNaN(parseInt(localStorage.getItem('systolic')))
+      this.newSystolic = isNaN(parseInt(localStorage.getItem('systolic')))
         ? this.systolic
         : parseInt(localStorage.getItem('systolic'));
-      this.diastolic = isNaN(parseInt(localStorage.getItem('diastolic')))
+      this.newDiastolic = isNaN(parseInt(localStorage.getItem('diastolic')))
         ? this.diastolic
         : parseInt(localStorage.getItem('diastolic'));
-    }, 1000);
+      this.changeFrequency();
+    }, 500);
+  }
+
+  changeFrequency() {
+    if (this.newHeartRateValue != this.heartRateValue) {
+      this.highcharts.charts
+        .filter((m) => m)[0]
+        .series[0].setData(
+          [].concat(
+            ...new Array(
+              this.heartFrequency + this.newHeartRateValue - 70
+            ).fill(this.heartRateData)
+          )
+        );
+      this.highcharts.charts
+        .filter((m) => m)[1]
+        .series[0].setData(
+          [].concat(
+            ...new Array(
+              this.heartFrequency + this.newHeartRateValue - 70
+            ).fill(this.spO2Data)
+          )
+        );
+      this.highcharts.charts
+        .filter((m) => m)[2]
+        .series[0].setData(
+          [].concat(
+            ...new Array(
+              this.heartFrequency + this.newHeartRateValue - 70
+            ).fill(this.BPData)
+          )
+        );
+    }
+    this.heartRateValue = this.newHeartRateValue;
+    this.SpO2 = this.newSpO2;
+    this.systolic = this.newSystolic;
+    this.diastolic = this.newDiastolic;
+    $('#exampleModal').modal('hide');
   }
 }
