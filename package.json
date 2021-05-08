@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
+    "start-local": "cd ICU-Simulator && ng serve",
     "build": "npm i && cd ICU-Simulator && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
