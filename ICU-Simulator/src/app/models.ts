@@ -14,3 +14,17 @@ export interface Quiz {
   options: Array<string>;
   answer?: string;
 }
+
+export interface SimulationScreen {
+  awRR: number;
+  bP_Auto_Dia: number;
+  bP_Auto_Sys: number;
+  bP_Dia: number;
+  bP_Sys: number;
+  heartRate: number;
+  id: number;
+  pulse: number;
+  spO2: number;
+  tblood: number;
+  userType: string;
+}

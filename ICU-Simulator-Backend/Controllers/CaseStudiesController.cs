@@ -10,20 +10,17 @@ namespace Simulation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ScenarioController : Controller
+    public class CaseStudiesController : Controller
     {
         private readonly IScenarioRepo _repository;
 
-        public ScenarioController(IScenarioRepo repository)
+        public CaseStudiesController(IScenarioRepo repository)
         {
             _repository = repository;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Scenario>> GetAllScenarios()
-        {
-            var scenarios = _repository.GetAllScenarios();
-            return Ok(scenarios);
-        }
+            => this.Ok(_repository.GetAllScenarios());
     }
 }

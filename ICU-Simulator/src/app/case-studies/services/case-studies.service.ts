@@ -8,14 +8,13 @@ import { Constant } from '../../constant';
 })
 export class CaseStudiesService {
   constructor(private http: HttpClient) {}
-  scenarioURL = Constant.api + 'Scenario';
+  apiURL = Constant.api + 'CaseStudies';
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
     }),
   };
 
-  getScenarios(): Observable<any> {
-    return this.http.get(this.scenarioURL, this.httpOptions);
-  }
+  getScenarios = (): Observable<any> =>
+    this.http.get(this.apiURL, this.httpOptions);
 }

@@ -47,9 +47,10 @@ namespace Simulation.Data
             return _context.SaveChanges() >= 0;
         }
 
-        public void UpdateParameter(Parameter cmd)
+        public void UpdateParameter(Parameter parameter)
         {
-
+            _context.Update(parameter);
+            SaveChanges();
         }
     }
 }
