@@ -2,6 +2,7 @@ ICU-Simulator/node_modules/
 node_modules/
 ICU-Simulator/dist/
 ICU-Simulator-Backend/Migrations/
-ICUSimulator/.vscode/
+.vscode
 ICU-Simulator-Backend/.vs/
 ICU-Simulator-Backend/.vscode/
+.idea
