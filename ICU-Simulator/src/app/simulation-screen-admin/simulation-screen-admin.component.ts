@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { SimulationScreen } from '../models';
 import { SimulationScreenService } from '../shared/simulation-screen.service';
-import {Constant} from '../constant';
+import { Constant } from '../constant';
 declare var $: any;
 
 @Component({
@@ -25,7 +25,7 @@ export class SimulationScreenComponentAdminComponent implements OnInit {
   awRR;
   Tblood;
   heartFrequency = 20;
-  heartRateData = [0, 10, 20, 10, 10, 15, 0, 85];
+  heartRateData = [10, 20, 10, 10, 15, 20, 0, 90, 0, 20];
   spO2Data = [99, 55, 25, 5, 0];
   BPData = [0, 85, 70, 75, 50, 55, 45, 35, 25, 15, 0];
   params: SimulationScreen;
@@ -62,7 +62,6 @@ export class SimulationScreenComponentAdminComponent implements OnInit {
       this.pulse = this.params.pulse;
       this.awRR = this.params.awRR;
       this.Tblood = this.params.tblood;
-      this.setInitialDataValuesForGraphs();
       this.changeFrequency();
     });
   }
@@ -72,42 +71,30 @@ export class SimulationScreenComponentAdminComponent implements OnInit {
       .filter((m) => m)[0]
       .series[0].setData(
         [].concat(
-          ...new Array(this.heartFrequency + this.heartRateValue - 70).fill(
-            this.heartRateData
-          )
+          ...new Array(
+            Math.floor(10 + (this.heartRateValue - 100) * 0.05)
+          ).fill(this.heartRateData)
         )
       );
     this.highcharts.charts
       .filter((m) => m)[1]
       .series[0].setData(
         [].concat(
-          ...new Array(this.heartFrequency + this.heartRateValue - 70).fill(
-            this.spO2Data
-          )
+          ...new Array(
+            Math.floor(10 + (this.heartRateValue - 100) * 0.05)
+          ).fill(this.spO2Data)
         )
       );
     this.highcharts.charts
       .filter((m) => m)[2]
       .series[0].setData(
         [].concat(
-          ...new Array(this.heartFrequency + this.heartRateValue - 70).fill(
-            this.BPData
-          )
+          ...new Array(
+            Math.floor(10 + (this.heartRateValue - 100) * 0.05)
+          ).fill(this.BPData)
         )
       );
-  }
-
-  setInitialDataValuesForGraphs(): void {
-    this.highcharts.charts.filter(m => m)[0].series[0].setData([0, 0, 0, 0].concat(
-      ...new Array(this.heartFrequency).fill(this.heartRateData)
-    ));
-    this.highcharts.charts.filter(m => m)[1].series[0].setData([0, 0, 0, 0].concat(
-      ...new Array(this.heartFrequency).fill(this.spO2Data)
-    ));
-    this.highcharts.charts.filter(m => m)[2].series[0].setData([0, 0, 0, 0].concat(
-      ...new Array(this.heartFrequency).fill(this.BPData)
-    ));
-  }
+  };
 
   saveData(): void {
     this.params.heartRate = this.newHeartRateValue;

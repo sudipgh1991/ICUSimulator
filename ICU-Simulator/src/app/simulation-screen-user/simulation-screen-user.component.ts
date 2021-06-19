@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { SimulationScreen } from '../models';
 import { SimulationScreenService } from '../shared/simulation-screen.service';
-import {Constant} from '../constant';
+import { Constant } from '../constant';
 
 @Component({
   selector: 'app-simulation-screen-user',
@@ -53,21 +53,8 @@ export class SimulationScreenComponentUserComponent implements OnInit {
       this.pulse = this.params.pulse;
       this.awRR = this.params.awRR;
       this.Tblood = this.params.tblood;
-      this.setInitialDataValuesForGraphs();
       this.changeFrequency();
     });
-  }
-
-  setInitialDataValuesForGraphs(): void {
-    this.highcharts.charts.filter(m => m)[0].series[0].setData([0, 0, 0, 0].concat(
-      ...new Array(this.heartFrequency).fill(this.heartRateData)
-    ));
-    this.highcharts.charts.filter(m => m)[1].series[0].setData([0, 0, 0, 0].concat(
-      ...new Array(this.heartFrequency).fill(this.spO2Data)
-    ));
-    this.highcharts.charts.filter(m => m)[2].series[0].setData([0, 0, 0, 0].concat(
-      ...new Array(this.heartFrequency).fill(this.BPData)
-    ));
   }
 
   changeFrequency(): void {
@@ -75,27 +62,27 @@ export class SimulationScreenComponentUserComponent implements OnInit {
       .filter((m) => m)[0]
       .series[0].setData(
         [].concat(
-          ...new Array(this.heartFrequency + this.heartRateValue - 70).fill(
-            this.heartRateData
-          )
+          ...new Array(
+            Math.floor(10 + (this.heartRateValue - 100) * 0.05)
+          ).fill(this.heartRateData)
         )
       );
     this.highcharts.charts
       .filter((m) => m)[1]
       .series[0].setData(
         [].concat(
-          ...new Array(this.heartFrequency + this.heartRateValue - 70).fill(
-            this.spO2Data
-          )
+          ...new Array(
+            Math.floor(10 + (this.heartRateValue - 100) * 0.05)
+          ).fill(this.spO2Data)
         )
       );
     this.highcharts.charts
       .filter((m) => m)[2]
       .series[0].setData(
         [].concat(
-          ...new Array(this.heartFrequency + this.heartRateValue - 70).fill(
-            this.BPData
-          )
+          ...new Array(
+            Math.floor(10 + (this.heartRateValue - 100) * 0.05)
+          ).fill(this.BPData)
         )
       );
   }
