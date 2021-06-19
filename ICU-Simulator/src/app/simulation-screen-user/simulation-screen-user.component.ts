@@ -307,6 +307,7 @@ export class SimulationScreenComponentUser implements OnInit {
     this.highcharts = Highcharts;
     setTimeout(() => {
       $('.highcharts-credits').hide();
+      this.changeMappings();
       $('#exampleModal')
         .modal({
           backdrop: false,
@@ -338,39 +339,45 @@ export class SimulationScreenComponentUser implements OnInit {
   }
 
   changeFrequency() {
-    if (this.newHeartRateValue != this.heartRateValue) {
-      this.highcharts.charts
-        .filter((m) => m)[0]
-        .series[0].setData(
-          [].concat(
-            ...new Array(
-              this.heartFrequency + this.newHeartRateValue - 70
-            ).fill(this.heartRateData)
-          )
-        );
-      this.highcharts.charts
-        .filter((m) => m)[1]
-        .series[0].setData(
-          [].concat(
-            ...new Array(
-              this.heartFrequency + this.newHeartRateValue - 70
-            ).fill(this.spO2Data)
-          )
-        );
-      this.highcharts.charts
-        .filter((m) => m)[2]
-        .series[0].setData(
-          [].concat(
-            ...new Array(
-              this.heartFrequency + this.newHeartRateValue - 70
-            ).fill(this.BPData)
-          )
-        );
-    }
     this.heartRateValue = this.newHeartRateValue;
+    localStorage.setItem('heartRate', this.heartRateValue.toString());
     this.SpO2 = this.newSpO2;
+    localStorage.setItem('spO2', this.SpO2.toString());
     this.systolic = this.newSystolic;
+    localStorage.setItem('systolic', this.systolic.toString());
     this.diastolic = this.newDiastolic;
+    localStorage.setItem('diastolic', this.diastolic.toString());
+    this.changeMappings();
     $('#exampleModal').modal('hide');
+  }
+
+  changeMappings() {
+    this.highcharts.charts
+      .filter((m) => m)[0]
+      .series[0].setData(
+        [].concat(
+          ...new Array(
+            Math.floor(10 + (this.heartRateValue - 100) * 0.05)
+          ).fill(this.heartRateData)
+        )
+      );
+    this.highcharts.charts
+      .filter((m) => m)[1]
+      .series[0].setData(
+        [].concat(
+          ...new Array(
+            Math.floor(10 + (this.heartRateValue - 100) * 0.05)
+          ).fill(this.spO2Data)
+        )
+      );
+    this.highcharts.charts
+      .filter((m) => m)[2]
+      .series[0].setData(
+        [].concat(
+          ...new Array(
+            Math.floor(10 + (this.heartRateValue - 100) * 0.05)
+          ).fill(this.BPData)
+        )
+      );
   }
 }
