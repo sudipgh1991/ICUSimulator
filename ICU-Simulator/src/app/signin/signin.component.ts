@@ -18,6 +18,7 @@ export class SigninComponent implements OnInit {
     if (this.username === 'admin' && this.password === 'admin') {
       this.unauthorized = false;
       this.router.navigate(['simulationScreenAdmin']);
+      sessionStorage.setItem('isUser', 'false');
     } else {
       this.unauthorized = true;
     }
@@ -25,5 +26,6 @@ export class SigninComponent implements OnInit {
 
   loginAsUser(): void {
     this.router.navigate(['simulationScreenUser']);
+    sessionStorage.setItem('isUser', 'true');
   }
 }

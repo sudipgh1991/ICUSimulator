@@ -12,6 +12,8 @@ namespace Simulation.Data
         public DbSet<Symptom> Symptoms { get; set; }
         public DbSet<Input> Inputs { get; set; }
         public DbSet<Parameter> Parameters { get; set; }
+        public DbSet<PatientProfile> PatientProfiles { get; set; }
+        public DbSet<Quiz> Quiz { get; set; }
 
     }
 }

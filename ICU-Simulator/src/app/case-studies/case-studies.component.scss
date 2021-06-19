@@ -1,33 +1,68 @@
 .card {
-  width: 100%;
-  align-items: center;
-  background-color: #19191a;
-  box-shadow: 5px 10px #1a1d27;
+    width: 100%;
+    align-items: center;
+    background-color: #19191a;
+    box-shadow: 5px 10px #1a1d27;
+}
+
+.card-img-top {
+    width: 30% !important;
 }
 
 .card:hover {
-  transform: scale(1.01);
+    transform: scale(1.01);
+}
+
+.card-body {
+    width: 100% !important;
 }
 
 @media screen and (max-width: 990px) {
-  .row {
-    margin: 5% 0;
-  }
-  .card {
-    margin: 2% 0;
-  }
+    .row {
+        margin: 5% 0;
+    }
+    .card {
+        margin: 2% 0;
+    }
 }
 
 .card-title {
-  color: white;
+    color: white;
 }
 
 .card-text {
-  color: wheat;
+    color: wheat;
 }
 
 img {
-  height: 156px;
-  width: 200px;
-  margin-top: 3%;
+    height: 156px;
+    width: 200px;
+    margin-top: 3%;
+}
+
+.modal-backdrop.show {
+    opacity: 0 !important;
+}
+
+.dark-modal .modal-content {
+    background-color: black;
+    color: white;
+}
+
+.dark-modal .close {
+    color: white;
+}
+
+.toast {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 0.5em;
+    z-index: 1200;
+    zoom: 1.5;
+}
+
+.toast-header {
+    background-color: black;
+    color: white;
 }

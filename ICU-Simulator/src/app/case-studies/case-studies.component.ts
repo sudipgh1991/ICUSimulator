@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CaseStudiesService } from './services/case-studies.service';
-import { CaseStudy } from '../models';
+import { Condition, Scenario, Symptom } from '../models';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import jquery from 'jquery';
 
 @Component({
   selector: 'app-case-studies',
@@ -8,57 +10,83 @@ import { CaseStudy } from '../models';
   styleUrls: ['./case-studies.component.scss'],
 })
 export class CaseStudiesComponent implements OnInit {
-  constructor(private caseStudy: CaseStudiesService) {}
-  caseStudies: Array<CaseStudy> = [];
+  constructor(
+    private caseStudyService: CaseStudiesService,
+    private modalService: NgbModal
+  ) {}
+  scenarios: Array<Scenario> = [];
+  conditions: Array<Condition> = [];
+  conditionSelected: string = null;
+  symptoms: Array<Symptom> = [];
+  scenarioSelected: Scenario = {
+    id: null,
+    age: null,
+    conditionId: null,
+    symptomId: null,
+    measureId: '0',
+    briefDescription: '',
+    detailedDescription: '',
+    type: null,
+  };
+  showToast = false;
+  isUser = false;
+
   ngOnInit(): void {
-    this.caseStudy.getScenarios().subscribe(
-      (data: Array<CaseStudy>) => {
-        this.caseStudies = data;
+    this.isUser = sessionStorage.getItem('isUser') === 'true';
+    this.getScenarios();
+    this.getConditions();
+    this.getSymptoms();
+  }
+
+  getScenarios() {
+    this.caseStudyService.getScenarios().subscribe(
+      (data: Array<Scenario>) => {
+        this.scenarios = data;
       },
       (err) => {
-        this.populateDefaultCaseStudies();
+        alert('Failed to connect to server');
       }
     );
   }
 
-  populateDefaultCaseStudies() {
-    this.caseStudies = [
-      {
-        type: 'heart',
-        briefDescription: 'Case Study 1',
-        detailedDescription:
-          'A 65 year old gentleman, H/O HTN and DM presented with SOB. On examination, anxious, having respiratory distress and cold peripheries',
+  getConditions() {
+    this.caseStudyService.getSymptoms().subscribe(
+      (data) => {
+        this.symptoms = data;
       },
-      {
-        type: 'brain',
-        briefDescription: 'Case Study 2',
-        detailedDescription:
-          '55 year male, HTN, DM and ischaemic heart disease. Presented with chest discomfort, and SOB. Consci ous, warm peripheries, sp2: 89%',
+      (err) => alert('Failed to connect to server')
+    );
+  }
+
+  getSymptoms() {
+    this.caseStudyService.getConditions().subscribe(
+      (data) => {
+        this.conditions = data;
       },
-      {
-        type: 'kidney',
-        briefDescription: 'Case Study 3',
-        detailedDescription:
-          'A 60 year old gentleman,H/O HTN and DM presented with SOB. On examination, anxious, having respiratory distress and cold peripheries',
-      },
-      {
-        type: 'brain',
-        briefDescription: 'Case Study 4',
-        detailedDescription:
-          '50 year male, HTN, DM and ischaemic heart disease. Presented with chest discomfort, and SOB. Consci ous, warm peripheries, sp2: 89%',
-      },
-      {
-        type: 'kidney',
-        briefDescription: 'Case Study 5',
-        detailedDescription:
-          'A 62 year old gentleman,H/O HTN and DM presented with SOB. On examination, anxious, having respiratory distress and cold peripheries',
-      },
-      {
-        type: 'heart',
-        briefDescription: 'Case Study 6',
-        detailedDescription:
-          '58 year male, HTN, DM and ischaemic heart disease. Presented with chest discomfort, and SOB. Consci ous, warm peripheries, sp2: 89%',
-      },
-    ];
+      (err) => alert('Failed to connect to server')
+    );
+  }
+
+  open(content) {
+    setTimeout(() => jquery('ngb-modal-backdrop').remove(), 1);
+    this.showToast = false;
+    this.modalService
+      .open(content, {
+        ariaLabelledBy: 'modal-basic-title',
+        windowClass: 'dark-modal',
+        size: 'xl',
+        centered: true,
+      })
+      .result.then(
+        (result) => {
+          this.caseStudyService
+            .addScenario(this.scenarioSelected)
+            .subscribe((data) => {
+              this.getScenarios();
+              this.showToast = true;
+            });
+        },
+        (reason) => {}
+      );
   }
 }

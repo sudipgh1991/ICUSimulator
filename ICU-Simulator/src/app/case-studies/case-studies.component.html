@@ -2,8 +2,15 @@
     <a class="navbar-brand" [routerLink]="['./caseStudies']" routerLinkActive="router-link-active" style="font-size: 2rem;">Case Studies</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
+    </button>
 
+    <div class="collapse navbar-collapse" id="navbarSupportedCaseStudy" *ngIf="!isUser">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <a class="nav-link btn btn-outline-info" style="font-size: 1.2rem;" (click)="open(addCaseStudy)">Add Case Study</a>
+        </form>
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         </ul>
@@ -16,16 +23,16 @@
 <div class="container-fluid" style="padding:2em;margin-top:4em">
     <div class="row">
 
-        <div class="col-lg-4 col-md-12 col-sm-12" *ngFor="let caseStudy of caseStudies" style="margin-bottom: 3rem;">
+        <div class="col-lg-4 col-md-12 col-sm-12" *ngFor="let scenario of scenarios" style="margin-bottom: 3rem;">
             <div class="card">
-                <img *ngIf="caseStudy.type.toLocaleLowerCase().indexOf('heart')>-1" class="card-img-top" src="../../assets/images/cardio_1.png">
-                <img *ngIf="caseStudy.type.toLocaleLowerCase().indexOf('brain')>-1" class="card-img-top" src="../../assets/images/brain_1.png">
-                <img *ngIf="caseStudy.type.toLocaleLowerCase().indexOf('kidney')>-1" class="card-img-top" src="../../assets/images/kidney_1.png">
+                <img *ngIf="scenario.type.toLocaleLowerCase().indexOf('heart')>-1" class="card-img-top" src="../../assets/images/cardio_1.png">
+                <img *ngIf="scenario.type.toLocaleLowerCase().indexOf('brain')>-1" class="card-img-top" src="../../assets/images/brain_1.png">
+                <img *ngIf="scenario.type.toLocaleLowerCase().indexOf('kidney')>-1" class="card-img-top" src="../../assets/images/kidney_1.png">
                 <div class="card-body">
-                    <h1 class="card-title">{{caseStudy.briefDescription}}</h1>
-                    <h5 class="card-text">{{caseStudy.detailedDescription}}</h5>
+                    <h1 class="card-title">{{scenario.briefDescription}}</h1>
+                    <h5 class="card-text">{{scenario.detailedDescription}}</h5>
                     <br>
-                    <a href="#" class="btn btn-success" style="width: 18%;" [routerLink]="['/patientProfile',caseStudy.id]">Start</a>
+                    <a href="#" class="btn btn-success" style="width: 18%;" [routerLink]="['/patientProfile',scenario.id]">Start</a>
                     <a href="#" class="btn btn-warning pull-right">View in Simulation</a>
                 </div>
             </div>
@@ -33,3 +40,71 @@
 
     </div>
 </div>
+
+<ng-template #addCaseStudy let-modal data-backdrop="false">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Case Studies</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="condition">Condition</label>
+            <div class="input-group">
+                <select name="condition" id="condition" [(ngModel)]="scenarioSelected.conditionId" class="custom-select">
+                      <option value="null" disabled>Select Condition</option>
+                      <option *ngFor="let condition of conditions" [value]="condition.id">{{condition.description}}</option>
+                    </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="symptom">Symptom</label>
+            <div class="input-group">
+                <select name="symptom" id="symptom" [(ngModel)]="scenarioSelected.symptomId" class="custom-select">
+                      <option value="null" disabled>Select Symptom</option>
+                      <option *ngFor="let symptom of symptoms" [value]="symptom.id">{{symptom.description}}</option>
+                    </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <div class="input-group">
+                <input type="number" class="form-control" id="age" [(ngModel)]="scenarioSelected.age" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="briefDescription">Brief Description</label>
+            <div class="input-group">
+                <textarea class="form-control" id="briefDescription" rows="3" [(ngModel)]="scenarioSelected.briefDescription"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="detailedDescription">Detailed Description</label>
+            <div class="input-group">
+                <textarea class="form-control" id="detailedDescription" rows="5" [(ngModel)]="scenarioSelected.detailedDescription"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="type">Type</label>
+            <div class="input-group">
+                <select name="type" id="type" [(ngModel)]="scenarioSelected.type" class="custom-select">
+                    <option value="null" disabled>Select Type</option>
+                    <option value="Kidney">Kidney</option>
+                    <option value="Heart">Heart</option>
+                    <option value="Brain">Brain</option>
+                  </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-success" (click)="modal.close('Save click')" [disabled]="!(scenarioSelected.conditionId && scenarioSelected.symptomId && scenarioSelected.age && scenarioSelected.type)" style="width:100%">Add Case Study</button>
+        </div>
+        <!-- <button type="button" class="btn btn-danger" (click)="modal.dismiss('Save click')">Cancel</button> -->
+    </div>
+</ng-template>
+
+<ngb-toast *ngIf="showToast" [autohide]="true" header="Message" (hidden)="close()" [delay]="5000">
+    {{'Scenario '+scenarioSelected.briefDescription + ' added successfully'}}
+</ngb-toast>

@@ -2,10 +2,16 @@
     transform: scale(1.01);
 }
 
+.card-img-top {
+    width: 100% !important;
+}
+
 .card {
     border-radius: 15px;
     // box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 18px 1px rgba(49, 53, 72, .1);
+    align-items: initial;
+    background-color: white;
 }
 
 @media screen and (max-width: 990px) {
@@ -13,6 +19,14 @@
         height: unset !important;
         margin-bottom: 5vh;
     }
+}
+
+.wrongColor {
+    background-color: red
+}
+
+.correctColor {
+    background-color: rgb(67, 126, 67);
 }
 
 .patient-info-heading {
@@ -104,4 +118,23 @@ table tbody tr td:first-child {
     z-index: 30;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal-backdrop.show {
+    opacity: 0 !important;
+}
+
+.dark-modal .modal-content {
+    background-color: #343a40 !important;
+    color: white;
+}
+
+.dark-modal .close {
+    color: white;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    width: 100%
 }

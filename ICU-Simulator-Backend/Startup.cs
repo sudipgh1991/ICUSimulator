@@ -18,24 +18,21 @@ namespace ICU_Simulator_Backend
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SimulationContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Connection")));
             services.AddCors();
-            services.AddControllers().AddNewtonsoftJson(s =>
-            {
-                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            });
+            services.AddControllers().AddNewtonsoftJson();
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IScenarioRepo, ScenarioRepo>();
             services.AddScoped<IConditionRepo, ConditionRepo>();
             services.AddScoped<ISymptomRepo, SymptomRepo>();
             services.AddScoped<IInputRepo, InputRepo>();
             services.AddScoped<IParameterRepo, ParameterRepo>();
+            services.AddScoped<IPatientProfileRepo, PatientProfileRepo>();
+            services.AddScoped<IQuizRepo, QuizRepo>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

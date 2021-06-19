@@ -1,9 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" [routerLink]="['./caseStudies']" routerLinkActive="router-link-active" style="font-size: 2rem;">Patient Profile</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
-
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedCaseStudy" *ngIf="!patientProfileView && !isUser">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <a class="nav-link btn btn-outline-info" style="font-size: 1.2rem;" (click)="open(addPatientProfile)">Add Profile
+        Info</a>
+        </form>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedCaseStudy" *ngIf="patientProfileView && !isUser">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <a class="nav-link btn btn-outline-info" style="font-size: 1.2rem;" (click)="open(addPatientProfile)">Edit Profile
+        Info</a>
+        </form>
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         </ul>
@@ -13,37 +28,33 @@
     </div>
 </nav>
 
-<div class="container-fluid" style="padding:2em;margin-top:4em">
+<div class="container-fluid" style="padding:2em;margin-top:4em" *ngIf="patientProfileView">
     <div class="row">
         <div class="col-lg-3 col-md-12">
             <div class="card" style="height: 190px;">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 d-flex justify-content-around">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="patient-img-name text-center">
-                                <img src="../../assets/images/patientImg.png" alt="" class="card-img-top mb-1 patient-img img-fluid rounded-circle" style="zoom:0.5">
-                                <h4>Sarah Lance</h4>
+                                <img src="../../assets/images/blankPerson.png" alt="" class="card-img-top mb-1 patient-img img-fluid rounded-circle" style="zoom:0.5">
+                                <h4>{{patientProfileView.name}}</h4>
                             </div>
                         </div>
-                        <div class="col-lg-9 col-md-9 d-flex justify-content-around">
+                        <div class="col-lg-9 col-md-9 col-sm-3">
                             <div class="patient-info">
-                                <table class='table borderless' style="font-size: 20px; color:black">
+                                <table class='table borderless table-responsive' style="font-size: 20px; color:black">
                                     <tbody>
                                         <tr>
-                                            <td>Birth:</td>
-                                            <td>20th Jan, 1992</td>
+                                            <td>Age:</td>
+                                            <td>{{patientProfileView.age}}</td>
                                         </tr>
                                         <tr>
                                             <td>Email:</td>
-                                            <td>sarahlance@gmail.com</td>
+                                            <td>{{patientProfileView.email}}</td>
                                         </tr>
                                         <tr>
                                             <td>Contact:</td>
-                                            <td>5544332211</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Address:</td>
-                                            <td>55th street, Queen City</td>
+                                            <td>{{patientProfileView.contact}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -60,19 +71,15 @@
                         <tbody>
                             <tr>
                                 <td>Blood Type:</td>
-                                <td>AB+</td>
+                                <td>{{patientProfileView.bloodType}}</td>
                             </tr>
                             <tr>
                                 <td>Allergies:</td>
-                                <td>Milk, Pineapple, Sea foods</td>
+                                <td>{{getAllergies()}}</td>
                             </tr>
                             <tr>
                                 <td>Disease:</td>
-                                <td>Diabetes, High BP, Cholestrol</td>
-                            </tr>
-                            <tr>
-                                <td>Last Visit:</td>
-                                <td>10th Oct, 2018</td>
+                                <td>{{getDiseases()}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -84,18 +91,16 @@
                 <div class="card-title" style="text-align: center;font-size:x-large;color: white;">Symptoms</div>
                 <div class="card-body" style="padding-top: 0px;">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
                             <ul style="color: white; font-size: 18px;font-weight:600">
-                                <li>Chest Discomfort</li>
-                                <li>Respiratory Distress</li>
-                                <li>SOB</li>
-                                <li>Cold Peripheries</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <ul style="color: white; font-size: 18px;font-weight:600">
-                                <li>Heart Problem</li>
-                                <li>Headache</li>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <li *ngFor="let item of getSymptoms(); let i = index" [hidden]="i > 4">{{item}}</li>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <li *ngFor="let item of getSymptoms(); let i = index" [hidden]="i <= 4">{{item}}</li>
+                                    </div>
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -105,7 +110,7 @@
         </div>
         <div class="col-lg-3 col-md-12">
             <div class="card bg-gradient-y-success" style="height: 190px;">
-                <div class="card-title" style="text-align: center;font-size:x-large;color: white;">Regular Checkups</div>
+                <div class="card-title" style="text-align: center;font-size:x-large;color: white;">Attachments</div>
                 <div class="card-body" style="padding-top: 0px;">
                     <table class='table borderless' style="font-size: 18px; color:white">
                         <tbody>
@@ -128,113 +133,88 @@
         </div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">Medical History</h2>
-                    <div class="table-responsive">
-                        <table class="table patient-wrapper">
-                            <tbody>
-                                <tr>
-                                    <td class=" border-top-0 align-middle">
-                                        <img src="../../assets/images/patientImg2.png" alt="" class="rounded-circle doctor-img">
-                                    </td>
-                                    <td class="align-middle border-top-0">Dr. Phil Gray</td>
-                                    <td class="align-middle border-top-0">Dentist</td>
-                                    <td class="align-middle border-top-0">
-                                        <i class="fa fa-calendar-check-o"></i> 15/10/18
-                                    </td>
-                                    <td class="align-middle border-top-0">
-                                        <i class="fa fa-map-marker"></i> 58th Street, Manhattan, NYC
-                                    </td>
-                                    <td class="align-middle border-top-0">
-                                        <i class="fa fa-circle text-danger"></i> Hospital Visit
-                                    </td>
-                                    <td class="align-middle border-top-0">
-                                        <div class="action">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>&nbsp;&nbsp;
-                                            <i class="fa fa-trash-o" aria-hidden="true" title="Delete"></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle">
-                                        <img src="../../assets/images/patientImg3.png" alt="" class="rounded-circle doctor-img">
-                                    </td>
-                                    <td class="align-middle">Dr. Irene Baker</td>
-                                    <td class="align-middle">Dermatologist</td>
-                                    <td class="align-middle">
-                                        <i class="fa fa-calendar-check-o"></i> 20/10/18
-                                    </td>
-                                    <td class="align-middle">
-                                        <i class="fa fa-map-marker"></i> 58th Street, Manhattan, NYC
-                                    </td>
-                                    <td class="align-middle">
-                                        <i class="fa fa-circle text-primary"></i> Medical Consultion
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="action">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>&nbsp;&nbsp;
-                                            <i class="fa fa-trash-o" aria-hidden="true" title="Delete"></i>
-                                        </div>
-                                    </td>
-                                </tr>
 
-                                <tr>
-                                    <td class="align-middle border-bottom-0">
-                                        <img src="../../assets/images/patientImg4.png" alt="" class="rounded-circle doctor-img">
-                                    </td>
-                                    <td class="align-middle border-bottom-0">Dr. Diane Paige</td>
-                                    <td class="align-middle border-bottom-0">ID Physician</td>
-                                    <td class="align-middle border-bottom-0">
-                                        <i class="fa fa-calendar-check-o"></i> 25/10/18
-                                    </td>
-                                    <td class="align-middle border-bottom-0">
-                                        <i class="fa fa-map-marker"></i> 58th Street, Manhattan, NYC
-                                    </td>
-                                    <td class="align-middle border-bottom-0">
-                                        <i class="fa fa-circle text-danger"></i> Hospital Visit
-                                    </td>
-                                    <td class="align-middle border-bottom-0">
-                                        <div class="action">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>&nbsp;&nbsp;
-                                            <i class="fa fa-trash-o" aria-hidden="true" title="Delete"></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <div class="card" *ngIf="patientProfileView">
+        <div class="card-header" id="headingOne" style="background-image: linear-gradient(to right, rgb(19, 3, 83) , rgb(9, 55, 193));border-radius: 10px;">
+            <h2 style="color:white">Patient Condition</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <h3 style="padding: 0 1%">{{patientProfileView.condition}}</h3>
             </div>
         </div>
     </div>
+
     <br>
     <div id="accordion">
         <div class="card">
             <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" style="background-image: linear-gradient(to right, rgb(19, 3, 83) , rgb(9, 55, 193));border-radius: 10px;" (click)="expandCollapse()">
-                <h2 class="mb-0" style="cursor: pointer; color:white" *ngIf="!expand && position < questions.length">Click here to play the game !!</h2>
-                <h2 class="mb-0" style="cursor: pointer; color:white" *ngIf="expand && position < questions.length">Choose the correct option</h2>
-                <h2 *ngIf="position === questions.length" style="color: white;">All the responses are saved.
-                    <button class="btn btn-success" [routerLink]="['/simulationScreen']"><span>Click here</span></button> to see the result in simulation</h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2 class="mb-0" style="cursor: pointer; color:white" *ngIf="expand && questions.length > 0">Click here to play the game !!</h2>
+                        <h2 class="mb-0" style="cursor: pointer; color:white" *ngIf="!expand && questions.length > 0">Choose the correct option</h2>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right" *ngIf="!isUser">
+                        <button class="btn btn-success" (click)="open(addQuestions)">Click to add question</button>
+                    </div>
+                    <div class="col-sm-2" style="text-align: right" *ngIf="position < questions.length - 1 && questions.length > 0 && showWrongRightColor" (click)="incrementPosition()">
+                        <button class="btn btn-info">Next Question</button>
+                    </div>
+                </div>
             </div>
-
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion" *ngIf="position < questions.length">
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion" *ngIf="questions.length > 0">
                 <div class="card-body">
                     <div class="row">
                         <h3 style="padding: 0 1%">{{questions[position].question}}</h3>
                     </div>
 
                     <div class="row">
-                        <div *ngFor="let item of questions[position].options" class="col-sm-6" style="padding:10px">
-                            <div class="card pull-up">
+                        <div class="col-sm-6" style="padding:10px">
+                            <div class="card pull-up" style="cursor:pointer">
                                 <div class="card-content">
-                                    <div class="card-body">
+                                    <div class="card-body" [ngClass]="showWrongRightColor && answerChoosed === questions[position].option1 && answerChoosed != questions[position].correctAnswer ? 'wrongColor': showWrongRightColor && answerChoosed === questions[position].option1 && answerChoosed === questions[position].correctAnswer ? 'correctColor':'none'">
                                         <div class="row">
-                                            <div class="col-12 text-left" (click)="answerChoosen()">
-                                                <h5 class="mb-0">{{item}}</h5>
-                                                <small class="text-danger">120/89 mm/hg</small>
+                                            <div class="col-12 text-left" (click)="answerChoosen(questions[position].option1)">
+                                                <h5 class="mb-0">{{questions[position].option1}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="padding:10px">
+                            <div class="card pull-up" style="cursor:pointer">
+                                <div class="card-content">
+                                    <div class="card-body" [ngClass]="showWrongRightColor && answerChoosed === questions[position].option2 && answerChoosed != questions[position].correctAnswer ? 'wrongColor': showWrongRightColor && answerChoosed === questions[position].option2 && answerChoosed === questions[position].correctAnswer ? 'correctColor':'none'">
+                                        <div class="row">
+                                            <div class="col-12 text-left" (click)="answerChoosen(questions[position].option2)">
+                                                <h5 class="mb-0">{{questions[position].option2}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="padding:10px">
+                            <div class="card pull-up" style="cursor:pointer">
+                                <div class="card-content">
+                                    <div class="card-body" [ngClass]="showWrongRightColor && answerChoosed === questions[position].option3 && answerChoosed != questions[position].correctAnswer ? 'wrongColor': showWrongRightColor && answerChoosed === questions[position].option3 && answerChoosed === questions[position].correctAnswer ? 'correctColor':'none'">
+                                        <div class="row">
+                                            <div class="col-12 text-left" (click)="answerChoosen(questions[position].option3)">
+                                                <h5 class="mb-0">{{questions[position].option3}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="padding:10px">
+                            <div class="card pull-up" style="cursor:pointer">
+                                <div class="card-content">
+                                    <div class="card-body" [ngClass]="showWrongRightColor && answerChoosed === questions[position].option4 && answerChoosed != questions[position].correctAnswer ? 'wrongColor': showWrongRightColor && answerChoosed === questions[position].option4 && answerChoosed === questions[position].correctAnswer ? 'correctColor':'none'">
+                                        <div class="row">
+                                            <div class="col-12 text-left" (click)="answerChoosen(questions[position].option4)">
+                                                <h5 class="mb-0">{{questions[position].option4}}</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -242,8 +222,185 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row" *ngIf="answerChoosed!=questions[position].correctAnswer && answerChoosed">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4" style="padding:10px">
+                            <div class="card pull-up" style="background-color: #6fc06f">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <h4>Correct answer was: &nbsp;
+                                                <p>{{questions[position].correctAnswer}}</p>
+                                            </h4>
+                                        </div>
+                                        <div class="row">
+                                            <h4>Justification: &nbsp;
+                                                <p>{{questions[position].justification}}</p>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<ng-template #addPatientProfile let-modal data-backdrop="false">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Patient Profile</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="condition">Name</label>
+            <div class="input-group">
+                <input type="text" [(ngModel)]="patientProfile.name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="symptom">Age</label>
+            <div class="input-group">
+                <input type="number" [(ngModel)]="patientProfile.age" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age">Email</label>
+            <div class="input-group">
+                <input type="email" [(ngModel)]="patientProfile.email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="briefDescription">Contact</label>
+            <div class="input-group">
+                <input type="text" [(ngModel)]="patientProfile.contact">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="patientCondition">Patient Condition</label>
+            <div class="input-group">
+                <textarea class="form-control" id="patientCondition" rows="5" [(ngModel)]="patientProfile.condition"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="bloodType">Blood Type</label>
+            <div class="input-group">
+                <select name="bloodType" id="bloodType" [(ngModel)]="patientProfile.bloodType" class="custom-select">
+          <option value=null>Select Blood Type</option>
+          <option value="A-">A-</option>
+          <option value="A+">A+</option>
+          <option value="B-">B-</option>
+          <option value="B+">B+</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O-">O-</option>
+          <option value="O+">O+</option>
+        </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="detailedDescription">Allergies (add multiple ; separated)</label>
+            <div class="input-group">
+                <textarea class="form-control" id="detailedDescription" rows="5" [(ngModel)]="patientProfile.allergies"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="detailedDescription">Diseases (add multiple ; separated)</label>
+            <div class="input-group">
+                <textarea class="form-control" id="detailedDescription" rows="5" [(ngModel)]="patientProfile.disease"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="detailedDescription">Symptoms (add multiple ; separated)</label>
+            <div class="input-group">
+                <input type="text" name="symptoms" id="symptoms" data-role="tagsinput" [(ngModel)]="patientProfile.symptoms">
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-success" (click)="modal.close('Save')" style="width:100%" *ngIf="!patientProfileView">Add
+        Profile</button>
+            <button type="button" class="btn btn-success" (click)="modal.close('Edit')" style="width:100%" *ngIf="patientProfileView">Edit
+        Profile</button>
+        </div>
+        <!-- <button type="button" class="btn btn-danger" (click)="modal.dismiss('Save click')">Cancel</button> -->
+    </div>
+</ng-template>
+
+<ng-template #addQuestions let-modal data-backdrop="false">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Question</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="question">Question</label>
+            <div class="input-group">
+                <textarea class="form-control" type="text" [(ngModel)]="question.question"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="option1">Option 1</label>
+            <div class="input-group">
+                <textarea class="form-control" [(ngModel)]="question.option1"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="option2">Option 2</label>
+            <div class="input-group">
+                <textarea class="form-control" [(ngModel)]="question.option2"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="option3">Option 3</label>
+            <div class="input-group">
+                <textarea class="form-control" [(ngModel)]="question.option3"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="option4">Option 4</label>
+            <div class="input-group">
+                <textarea class="form-control" [(ngModel)]="question.option4"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="correctAnswer">Choose Correct Option</label>
+            <div class="input-group">
+                <select name="correctAnswer" id="correctAnswer" [(ngModel)]="question.correctAnswer" class="custom-select">
+          <option value=null disabled>Select Correct Answer</option>
+          <option [value]="question.option1">Option 1</option>
+          <option [value]="question.option2">Option 2</option>
+          <option [value]="question.option3">Option 3</option>
+          <option [value]="question.option4">Option 4</option>
+        </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="option4">Justification</label>
+            <div class="input-group">
+                <textarea class="form-control" [(ngModel)]="question.justification"></textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-success" (click)="modal.close('Add Question')" style="width:100%">Add
+        Question</button>
+        </div>
+    </div>
+</ng-template>
