@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json.Serialization;
 using Simulation.Data;
 
 namespace ICU_Simulator_Backend
@@ -21,6 +20,7 @@ namespace ICU_Simulator_Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SimulationContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Connection")));
+            //services.AddDbContext<SimulationContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("ConnectionPostgres")));
             services.AddCors();
             services.AddControllers().AddNewtonsoftJson();
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

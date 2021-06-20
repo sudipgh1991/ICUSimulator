@@ -66,3 +66,5 @@ D:\ICUSimulator\ICU-Simulator-Backend\obj\Debug\netcoreapp3.1\ICU-Simulator-Back
 D:\ICUSimulator\ICU-Simulator-Backend\obj\Debug\netcoreapp3.1\ICU-Simulator-Backend.pdb
 D:\ICUSimulator\ICU-Simulator-Backend\obj\Debug\netcoreapp3.1\ICU-Simulator-Backend.genruntimeconfig.cache
 D:\ICUSimulator\ICU-Simulator-Backend\obj\Debug\netcoreapp3.1\scopedcss\bundle\ICU-Simulator-Backend.styles.css
+D:\ICUSimulator\ICU-Simulator-Backend\bin\Debug\netcoreapp3.1\Npgsql.dll
+D:\ICUSimulator\ICU-Simulator-Backend\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll

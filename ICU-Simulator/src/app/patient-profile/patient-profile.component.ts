@@ -158,6 +158,7 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
               this.patientService.saveQuiz(this.question).subscribe((data) => {
                 this.questions.push(data);
               });
+              this.ngOnInit();
             }
           }
         },
