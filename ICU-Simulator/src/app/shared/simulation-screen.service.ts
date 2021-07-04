@@ -21,4 +21,6 @@ export class SimulationScreenService {
 
   saveParameters = (simulationScreen: SimulationScreen) =>
     this.http.put(this.apiURL, simulationScreen);
+
+  keepAlive = () => this.http.get(this.apiURL + '/keepAlive', this.httpOptions);
 }

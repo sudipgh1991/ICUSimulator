@@ -32,13 +32,8 @@ namespace ICU_Simulator_Backend
             services.AddScoped<IQuizRepo, QuizRepo>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseRouting();
             
             app.UseCors(x => x
@@ -48,6 +43,8 @@ namespace ICU_Simulator_Backend
                 .AllowCredentials());
 
             app.UseAuthorization();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

@@ -29,6 +29,10 @@ namespace Simulation.Controllers
             _repository.UpdateParameter(paramater);
             return this.Ok();
         }
+
+        [HttpGet("keepAlive")]
+        public ActionResult KeepAlive()
+            => this.Ok();
         
     }
 }

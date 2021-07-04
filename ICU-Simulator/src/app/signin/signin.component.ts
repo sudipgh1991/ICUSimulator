@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { SimulationScreenService } from '../shared/simulation-screen.service';
 
 @Component({
   selector: 'app-signin',
@@ -7,12 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private simulationService: SimulationScreenService
+  ) {}
   username: string;
   password: string;
   unauthorized = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setInterval(() => this.simulationService.keepAlive(), 100);
+  }
 
   login(): void {
     if (this.username === 'admin' && this.password === 'admin') {
