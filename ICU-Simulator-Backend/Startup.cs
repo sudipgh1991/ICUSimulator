@@ -19,8 +19,7 @@ namespace ICU_Simulator_Backend
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SimulationContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Connection")));
-            //services.AddDbContext<SimulationContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("ConnectionPostgres")));
+            services.AddDbContext<SimulationContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("ConnectionRemote")));
             services.AddCors();
             services.AddControllers().AddNewtonsoftJson();
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
