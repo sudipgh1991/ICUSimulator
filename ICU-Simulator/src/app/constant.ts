@@ -1,7 +1,7 @@
 declare var $: any;
 export class Constant {
   //public static api = 'http://' + window.location.hostname + ':8080/api/';
-  public static api = 'http://dotnetcore-icusimul.herokuapp.com/api/';
+  public static api = 'https://dotnetcore-icusimul.herokuapp.com/api/';
 
   public static chartOptionsHeart = {
     chart: {
