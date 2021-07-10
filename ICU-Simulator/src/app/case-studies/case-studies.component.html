@@ -39,6 +39,9 @@
         </div>
 
     </div>
+    <div class="spinner" *ngIf="showSpinner">
+        <img src="../../assets/images/loader.gif" alt="loading">
+    </div>
 </div>
 
 <ng-template #addCaseStudy let-modal data-backdrop="false">

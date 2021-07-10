@@ -5,8 +5,10 @@ import { AppComponent } from './app.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { SimulationScreenComponentAdminComponent } from './simulation-screen-admin/simulation-screen-admin.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderInterceptorService } from './loader/service/loader.interceptor.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 import { SimulationScreenComponentUserComponent } from './simulation-screen-user/simulation-screen-user.component';
 import { SigninComponent } from './signin/signin.component';
@@ -22,6 +24,7 @@ import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
     CaseStudiesComponent,
     PatientProfileComponent,
     SigninComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,13 @@ import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     NgbToastModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

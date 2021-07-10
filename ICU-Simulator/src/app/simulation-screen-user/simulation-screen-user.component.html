@@ -97,8 +97,7 @@
         </div>
         <div class="col-sm-1">
             <button type="button" class="btn btn-param btn-light">
-        <i class="fa fa-play" aria-hidden="true">&nbsp;/&nbsp;</i
-        ><i class="fa fa-ban" aria-hidden="true"></i><br />
+        <i class="fa fa-play" aria-hidden="true">&nbsp;/&nbsp;</i><i class="fa fa-ban" aria-hidden="true"></i><br />
         Start/Stop
       </button>
         </div>
@@ -144,11 +143,9 @@
         </div>
     </div>
 
-
-
-
-
-
+    <div class="spinner" *ngIf="showSpinner">
+        <img src="../../assets/images/loader.gif" alt="loading">
+    </div>
 </div>
 <br />
 <div class="scroller" style="position: absolute"></div>

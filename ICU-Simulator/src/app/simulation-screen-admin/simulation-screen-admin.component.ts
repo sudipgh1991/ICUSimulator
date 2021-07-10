@@ -3,6 +3,7 @@ import * as Highcharts from 'highcharts';
 import { SimulationScreen } from '../models';
 import { SimulationScreenService } from '../shared/simulation-screen.service';
 import { Constant } from '../constant';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 declare var $: any;
 
 @Component({
@@ -29,13 +30,17 @@ export class SimulationScreenComponentAdminComponent implements OnInit {
   spO2Data = [99, 55, 25, 5, 0];
   BPData = [0, 85, 70, 75, 50, 55, 45, 35, 25, 15, 0];
   params: SimulationScreen;
+  showSpinner = true;
 
   chartOptionsHeart = Constant.chartOptionsHeart;
 
   chartOptionsSpo2 = Constant.chartOptionsSpo2;
 
   chartOptionsBP = Constant.chartOptionsBP;
-  constructor(private simulationService: SimulationScreenService) {}
+  constructor(
+    private simulationService: SimulationScreenService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.highcharts = Highcharts;
@@ -50,6 +55,7 @@ export class SimulationScreenComponentAdminComponent implements OnInit {
 
   getInitialValues(): void {
     this.simulationService.getParameters().subscribe((data) => {
+      this.showSpinner = false;
       this.params = data[0];
       this.heartRateValue = this.params.heartRate;
       this.newHeartRateValue = this.heartRateValue;
@@ -104,5 +110,22 @@ export class SimulationScreenComponentAdminComponent implements OnInit {
     this.simulationService.saveParameters(this.params).subscribe();
     $('#exampleModal').modal('hide');
     this.getInitialValues();
+  }
+
+  open(content) {
+    setTimeout(() => $('ngb-modal-backdrop').remove(), 1);
+    this.modalService
+      .open(content, {
+        ariaLabelledBy: 'modal-basic-title',
+        windowClass: 'dark-modal',
+        size: 'l',
+        centered: true,
+      })
+      .result.then(
+        (result) => {
+          this.saveData();
+        },
+        (reason) => {}
+      );
   }
 }

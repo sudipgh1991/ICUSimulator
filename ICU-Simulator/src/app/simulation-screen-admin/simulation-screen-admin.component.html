@@ -97,14 +97,13 @@
         </div>
         <div class="col-sm-1">
             <button type="button" class="btn btn-param btn-light">
-        <i class="fa fa-play" aria-hidden="true">&nbsp;/&nbsp;</i
-        ><i class="fa fa-ban" aria-hidden="true"></i><br />
+        <i class="fa fa-play" aria-hidden="true">&nbsp;/&nbsp;</i><i class="fa fa-ban" aria-hidden="true"></i><br />
         Start/Stop
       </button>
         </div>
 
         <div class="col-sm-1">
-            <button type="button" class="btn btn-param btn-light" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-param btn-light" (click)="open(editParams)">
         <i class="fa fa-thermometer" aria-hidden="true"></i><br />
         Input Parameters
       </button>
@@ -146,62 +145,58 @@
       </button>
         </div>
     </div>
-
+    <div class="spinner" *ngIf="showSpinner">
+        <img src="../../assets/images/loader.gif" alt="loading">
+    </div>
 </div>
 <br />
 <div class="scroller" style="position: absolute"></div>
-<!-- Modal -->
-<div class="modal hide fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLabel">Change Parameters</h2>
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button> -->
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h4>Heart Rate</h4>
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="number" style="width: 100%;font-size: 1.2rem;" name="heartRate" id="heartRate" [(ngModel)]="newHeartRateValue" [value]="heartRateValue">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h4>SPo2</h4>
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="number" style="width: 100%;font-size: 1.2rem;" name="SPo2" id="SPo2" [(ngModel)]="newSpO2" [value]="SpO2">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h4>BP</h4>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label>Systolic</label>
-                                <input type="number" style="width: 100%;font-size: 1.2rem;" name="systolic" id="systolic" [(ngModel)]="newSystolic" [value]="systolic">
-                            </div>
 
-                            <div class="col-sm-6">
-                                <label>Diastolic</label>
-                                <input type="number" style="width: 100%;font-size: 1.2rem;" name="diastolic" id="diastolic" [(ngModel)]="newDiastolic" [value]="diastolic">
-                            </div>
-                        </div>
+<!-- Modal -->
+<ng-template #editParams let-modal data-backdrop="false">
+    <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Change Parameters</h2>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>Heart Rate</h4>
+            </div>
+            <div class="col-sm-8">
+                <input type="number" style="width: 100%;font-size: 1.2rem;" name="heartRate" id="heartRate" [(ngModel)]="newHeartRateValue" [value]="heartRateValue">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>SPo2</h4>
+            </div>
+            <div class="col-sm-8">
+                <input type="number" style="width: 100%;font-size: 1.2rem;" name="SPo2" id="SPo2" [(ngModel)]="newSpO2" [value]="SpO2">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>BP</h4>
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Systolic</label>
+                        <input type="number" style="width: 100%;font-size: 1.2rem;" name="systolic" id="systolic" [(ngModel)]="newSystolic" [value]="systolic">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label>Diastolic</label>
+                        <input type="number" style="width: 100%;font-size: 1.2rem;" name="diastolic" id="diastolic" [(ngModel)]="newDiastolic" [value]="diastolic">
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="saveData()">Save changes</button>
             </div>
         </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Close</button>
+        <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Save changes</button>
+    </div>
+</ng-template>

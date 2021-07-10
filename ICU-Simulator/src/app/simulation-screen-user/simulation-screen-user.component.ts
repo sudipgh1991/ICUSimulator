@@ -24,6 +24,7 @@ export class SimulationScreenComponentUserComponent implements OnInit {
   spO2Data = [99, 55, 25, 5, 0];
   BPData = [0, 85, 70, 75, 50, 55, 45, 35, 25, 15, 0];
   params: SimulationScreen;
+  showSpinner = true;
 
   chartOptionsHeart = Constant.chartOptionsHeart;
 
@@ -45,6 +46,7 @@ export class SimulationScreenComponentUserComponent implements OnInit {
 
   getInitialValues(): void {
     this.simulationService.getParameters().subscribe((data) => {
+      this.showSpinner = false;
       this.params = data[0];
       this.heartRateValue = this.params.heartRate;
       this.SpO2 = this.params.spO2;

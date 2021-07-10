@@ -30,6 +30,7 @@ export class CaseStudiesComponent implements OnInit {
   };
   showToast = false;
   isUser = false;
+  showSpinner = true;
 
   ngOnInit(): void {
     this.isUser = sessionStorage.getItem('isUser') === 'true';
@@ -41,6 +42,7 @@ export class CaseStudiesComponent implements OnInit {
   getScenarios() {
     this.caseStudyService.getScenarios().subscribe(
       (data: Array<Scenario>) => {
+        this.showSpinner = false;
         this.scenarios = data;
       },
       (err) => {
