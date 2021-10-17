@@ -21,7 +21,7 @@ export class SigninComponent implements OnInit {
   }
 
   login(): void {
-    if (this.username === 'admin' && this.password === 'admin') {
+    if (this.username === 'admin' && this.password === 'icusimulatoradmin%') {
       this.unauthorized = false;
       this.router.navigate(['simulationScreenAdmin']);
       sessionStorage.setItem('isUser', 'false');
