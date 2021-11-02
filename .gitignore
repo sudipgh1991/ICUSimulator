@@ -6,3 +6,5 @@ ICU-Simulator-Backend/Migrations/
 ICU-Simulator-Backend/.vs/
 ICU-Simulator-Backend/.vscode/
 .idea
+ICU-Simulator-Backend/bin
+bin
