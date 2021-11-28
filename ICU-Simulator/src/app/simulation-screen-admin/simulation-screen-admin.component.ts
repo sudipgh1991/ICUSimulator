@@ -40,7 +40,7 @@ export class SimulationScreenComponentAdminComponent implements OnInit {
   constructor(
     private simulationService: SimulationScreenService,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.highcharts = Highcharts;
@@ -51,6 +51,11 @@ export class SimulationScreenComponentAdminComponent implements OnInit {
       this.awRR = Math.floor(Math.random() * (12 - 14 + 1) + 12);
       this.Tblood = Math.floor(Math.random() * (95 - 100 + 1) + 99);
     }, 5000);
+    setInterval(() => {
+      var audio = new Audio(
+        'https://media.geeksforgeeks.org/wp-content/uploads/20190531135120/beep.mp3');
+      audio.play();
+    }, 8000);
   }
 
   getInitialValues(): void {
@@ -125,7 +130,7 @@ export class SimulationScreenComponentAdminComponent implements OnInit {
         (result) => {
           this.saveData();
         },
-        (reason) => {}
+        (reason) => { }
       );
   }
 }

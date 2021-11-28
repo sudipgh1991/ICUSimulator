@@ -31,7 +31,7 @@ export class SimulationScreenComponentUserComponent implements OnInit {
   chartOptionsSpo2 = Constant.chartOptionsSpo2;
 
   chartOptionsBP = Constant.chartOptionsBP;
-  constructor(private simulationService: SimulationScreenService) {}
+  constructor(private simulationService: SimulationScreenService) { }
 
   ngOnInit(): void {
     this.highcharts = Highcharts;
@@ -42,6 +42,11 @@ export class SimulationScreenComponentUserComponent implements OnInit {
       this.Tblood = Math.floor(Math.random() * (95 - 100 + 1) + 99);
     }, 5000);
     setInterval(() => this.getInitialValues(), 1000);
+    setInterval(() => {
+      var audio = new Audio(
+        '../../assets/beep.wav');
+      audio.play();
+    }, 8000);
   }
 
   getInitialValues(): void {
