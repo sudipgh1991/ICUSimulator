@@ -1,33 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ICUSimulator\\ICU-Simulator-Backend\\ICU-Simulator-Backend.csproj": {}
+    "/Users/sudipghosh/Desktop/Codebase/Code/ICUSimulator/ICU-Simulator-Backend/ICU-Simulator-Backend.csproj": {}
   },
   "projects": {
-    "D:\\ICUSimulator\\ICU-Simulator-Backend\\ICU-Simulator-Backend.csproj": {
+    "/Users/sudipghosh/Desktop/Codebase/Code/ICUSimulator/ICU-Simulator-Backend/ICU-Simulator-Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ICUSimulator\\ICU-Simulator-Backend\\ICU-Simulator-Backend.csproj",
+        "projectUniqueName": "/Users/sudipghosh/Desktop/Codebase/Code/ICUSimulator/ICU-Simulator-Backend/ICU-Simulator-Backend.csproj",
         "projectName": "ICU-Simulator-Backend",
-        "projectPath": "D:\\ICUSimulator\\ICU-Simulator-Backend\\ICU-Simulator-Backend.csproj",
-        "packagesPath": "C:\\Users\\Sudip\\.nuget\\packages\\",
-        "outputPath": "D:\\ICUSimulator\\ICU-Simulator-Backend\\obj\\",
+        "projectPath": "/Users/sudipghosh/Desktop/Codebase/Code/ICUSimulator/ICU-Simulator-Backend/ICU-Simulator-Backend.csproj",
+        "packagesPath": "/Users/sudipghosh/.nuget/packages/",
+        "outputPath": "/Users/sudipghosh/Desktop/Codebase/Code/ICUSimulator/ICU-Simulator-Backend/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Sudip\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/sudipghosh/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -79,6 +71,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
             }
           },
           "imports": [
@@ -99,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
         }
       }
     }

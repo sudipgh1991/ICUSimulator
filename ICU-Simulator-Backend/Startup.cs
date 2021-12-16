@@ -22,6 +22,7 @@ namespace ICU_Simulator_Backend
             services.AddDbContext<SimulationContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("ConnectionRemote")));
             services.AddCors();
             services.AddControllers().AddNewtonsoftJson();
+            services.AddSwaggerGen();
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IScenarioRepo, ScenarioRepo>();
             services.AddScoped<IConditionRepo, ConditionRepo>();
@@ -35,7 +36,14 @@ namespace ICU_Simulator_Backend
         public void Configure(IApplicationBuilder app)
         {
             app.UseRouting();
-            
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
+            });
+
             app.UseCors(x => x
                 .AllowAnyMethod()
                 .AllowAnyHeader()
